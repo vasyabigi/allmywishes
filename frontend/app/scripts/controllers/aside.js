@@ -1,6 +1,14 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('AsideCtrl', function ($scope) {
-    $scope.testContent = 'Text from ctrl';
-  });
+  .controller('AsideCtrl', ['$scope', '$rootScope', '$account', function ($scope, $rootScope, $account) {
+    var accountPromise = $account.getStatus(),
+        updateAside = function() {
+          $scope.asideShown = $rootScope.user.isAuthenticated;
+        };
+
+    accountPromise.then(function() {
+      updateAside();
+    });
+
+  }]);
