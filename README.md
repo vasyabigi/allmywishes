@@ -24,7 +24,7 @@ git clone git@github.com:vasyabigi/allmywishes.git
 
 #### Install requirements
 ```bash
-cd backend/allmywishes
+cd backend
 pip install -r reqs/dev.txt
 ```
 
