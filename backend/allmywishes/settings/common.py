@@ -137,6 +137,3 @@ LOGGING = {
         },
     }
 }
-
-TEST_TRAVIS_LINTER = ("kasd " +"asd"
-+10)
