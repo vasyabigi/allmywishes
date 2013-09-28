@@ -25,6 +25,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from="name", separator="")
     email = models.EmailField(max_length=255, blank=True, null=True)
+    oauth_token = models.TextField(null=True)
 
     # Django admin
     is_staff = models.BooleanField()

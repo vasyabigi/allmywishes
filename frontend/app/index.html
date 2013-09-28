@@ -45,7 +45,11 @@
                 <a href="#" class="thumb-sm avatar animated rollIn">
                   <img src="/images/face.jpeg" alt="FACE" />
                   <span class="caret caret-white"></span>
-                  <a ng-click="login()">YEBASH</a>
+                  <div ng-switch="account.isAuthenticated">
+                    <a ng-switch-when="false" ng-click="login()">YEBASH</a>
+                    <a ng-switch-when="true" ng-click="logout()">LOGOUT</a>
+                  </div>
+                  {{ account }}
                 </a>
               </div>
             </div>
@@ -57,6 +61,8 @@
     </section>
 
     <script src="bower_components/angular/angular.js"></script>
+
+    <script src="bower_components/angular-easyfb/angular-easyfb.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>

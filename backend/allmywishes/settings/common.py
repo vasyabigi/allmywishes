@@ -165,6 +165,11 @@ LOGGING = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 AUTH_USER_MODEL = 'accounts.Account'
 
 REDABILITY = {

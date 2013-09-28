@@ -19,4 +19,12 @@ angular.module('frontendApp')
       });
     };
 
+    $scope.logout = function() {
+      var accountPromise = $account.logout();
+
+      accountPromise.then(function() {
+        updateAside();
+      });
+    };
+
   }]);
