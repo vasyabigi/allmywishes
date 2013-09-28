@@ -75,16 +75,6 @@ module.exports = function (grunt) {
           }
         }
       },
-      test: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test')
-            ];
-          }
-        }
-      },
       dist: {
         options: {
           middleware: function (connect) {
@@ -122,26 +112,16 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
+
     compass: {
-      options: {
-        app: '<%= yeoman.app %>/config.rb',
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        debugInfo: true
-      },
-      dist: {},
       server: {
         options: {
-          debugInfo: true
+          config: '<%= yeoman.app %>/config.rb'
+        }
+      },
+      dist: {
+        options: {
+          config: '<%= yeoman.app %>/config_prod.rb'
         }
       }
     },
@@ -164,11 +144,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    // not used since Uglify task does concat,
-    // but still available if needed
-    /*concat: {
-      dist: {}
-    },*/
+
     rev: {
       dist: {
         files: {
@@ -214,40 +190,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-    cssmin: {
-      // By default, your `index.html` <!-- Usemin Block --> will take care of
-      // minification. This option is pre-configured if you do not wish to use
-      // Usemin blocks.
-      // dist: {
-      //   files: {
-      //     '<%= yeoman.dist %>/styles/main.css': [
-      //       '.tmp/styles/{,*/}*.css',
-      //       '<%= yeoman.app %>/styles/{,*/}*.css'
-      //     ]
-      //   }
-      // }
-    },
-    htmlmin: {
-      dist: {
-        options: {
-          /*removeCommentsFromCDATA: true,
-          // https://github.com/yeoman/grunt-usemin/issues/44
-          //collapseWhitespace: true,
-          collapseBooleanAttributes: true,
-          removeAttributeQuotes: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true*/
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>',
-          src: ['*.html', 'views/*.html'],
-          dest: '<%= yeoman.dist %>'
-        }]
-      }
-    },
     // Put files not handled in other tasks here
     copy: {
       dist: {
@@ -261,7 +203,8 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
+            'styles/fonts/*',
+            'styles/{,*/}*.css'
           ]
         }, {
           expand: true,
@@ -292,24 +235,14 @@ module.exports = function (grunt) {
         'copy:styles',
         'copy:html'
       ],
-      test: [
-        'compass',
-        'copy:styles'
-      ],
       dist: [
+        'jade:dist',
         'compass:dist',
-        'copy:styles',
         'copy:html',
+        'copy:styles',
         'imagemin',
         'svgmin',
-        'htmlmin'
       ]
-    },
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      }
     },
     cdnify: {
       dist: {
@@ -346,27 +279,18 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'connect:livereload',
-      'open',
+      // 'open',
       'watch'
     ]);
   });
-
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'connect:test',
-    'karma'
-  ]);
 
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',
     'concurrent:dist',
-    'concat',
     'copy:dist',
     'cdnify',
     'ngmin',
-    'cssmin',
     'uglify',
     'rev',
     'usemin'
@@ -374,7 +298,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'jshint',
-    'test',
     'build'
   ]);
 };

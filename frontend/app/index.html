@@ -30,21 +30,29 @@
     <section class="hbox stretch">
       <aside id="nav" class="bg-dark aside-md" ng-controller="AsideCtrl">
         <section class="vbox">
-          <header class="nav-bar dker"><a class="btn btn-link visible-xs"><i class="icon-reorder"></i></a><a ng-href="#/account/" class="nav-brand">I Wish... {{ testContent }}</a><a class="btn btn-link visible-xs"><i class="icon-comment-alt"></i></a>
+          <header class="nav-bar dker">
+            <a class="btn btn-link visible-xs">
+              <i class="icon-reorder"></i>
+            </a>
+            <a ng-href="#/account/" class="nav-brand">I Wish...</a>
+            <a class="btn btn-link visible-xs">
+              <i class="icon-comment-alt"></i>
+            </a>
           </header>
-        </section>
-        <section class="w-f">
-          <div class="lt nav-user hidden-xs pos-rlt">
-            <div class="nav-avatar pos-rlt">
-              <a href="#" class="thumb-sm avatar animated rollIn">
-                <img src="/images/face.jpeg" alt="FACE" />
-                <span class="caret caret-white"></span>
-              </a>
+          <section class="w-f">
+            <div class="lt nav-user hidden-xs pos-rlt">
+              <div class="nav-avatar pos-rlt">
+                <a href="#" class="thumb-sm avatar animated rollIn">
+                  <img src="/images/face.jpeg" alt="FACE" />
+                  <span class="caret caret-white"></span>
+                </a>
+              </div>
             </div>
-          </div>
+          </section>
         </section>
       </aside>
       <div ng-view=""></div>
+      <div>{{ testContent }}</div>
     </section>
 
     <script src="bower_components/angular/angular.js"></script>
