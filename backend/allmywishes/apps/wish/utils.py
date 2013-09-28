@@ -39,4 +39,3 @@ def get_wish_data(url):
         "price": None
     }
     return actual_data
-
