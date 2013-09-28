@@ -5,6 +5,7 @@ from django.conf import settings
 class Wish(models.Model):
     account = models.ForeignKey(settings.AUTH_USER_MODEL)
 
+    src_url = models.URLField(blank=True, null=True)
     title = models.CharField(
         max_length=100, blank=True,
         null=True, db_index=True

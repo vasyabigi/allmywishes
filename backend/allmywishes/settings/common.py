@@ -155,3 +155,9 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = 'accounts.Account'
+
+REDABILITY = {
+    "API_TOKEN": "dc16f836beb32cb92551b866ee683538dd2c4a4b",
+    "API_STARTPOINT": "http://www.readability.com/",
+    "API_PARSE_URL": "/api/content/v1/parser",
+}

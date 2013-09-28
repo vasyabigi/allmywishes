@@ -6,3 +6,4 @@ djangorestframework
 Markdown
 django-filter
 unidecode
+requests
