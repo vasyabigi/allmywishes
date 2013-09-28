@@ -3,6 +3,13 @@
 angular.module('frontendApp', ['ezfb', 'ngRoute'])
   .config(['$routeProvider', '$FBProvider', function ($routeProvider, $FBProvider) {
 
+
+    if (typeof String.prototype.startsWith !== 'function') {
+      String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) === str;
+      };
+    }
+
     $FBProvider.setInitParams({
       appId: '107790869310294'
     });

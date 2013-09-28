@@ -49,10 +49,10 @@
             </div>
             <nav class="nav-primary hidden-xs">
               <ul class="nav">
-                <li ng-repeat='item in navItems' ng-click='navItemClick()'>
-                  <a href="#">
-                    <i class='{{ item.icon }}'></i>
-                    {{ item.text }}
+                <li ng-repeat='pane in panes' ng-class='{active:pane.selected}'>
+                  <a href="#" ng-click="select(pane)" ng-href="#{{ pane.href }}">
+                    <i class='{{ pane.icon }}'></i>
+                    {{ pane.text }}
                   </a>
                 </li>
               </ul>
@@ -88,6 +88,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
 
     <script src="bower_components/angular-easyfb/angular-easyfb.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -97,6 +98,7 @@
     <script src="scripts/controllers/aside.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/item.js"></script>
+    <script src="scripts/services/underscore.js"></script>
     <!-- endbuild -->
 </body>
 </html>
