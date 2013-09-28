@@ -1,10 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from django.template.defaultfilters import slugify
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django_extensions.db.fields import AutoSlugField
-
-from unidecode import unidecode
 
 
 class AccountManager(BaseUserManager):
