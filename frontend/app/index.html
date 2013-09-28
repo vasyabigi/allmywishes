@@ -28,9 +28,9 @@
 
     <!-- Add your site or application content here -->
     <section class="hbox stretch">
-      <aside id="nav" class="bg-dark aside-md">
+      <aside id="nav" class="bg-dark aside-md" ng-controller="AsideCtrl">
         <section class="vbox">
-          <header class="nav-bar dker"><a class="btn btn-link visible-xs"><i class="icon-reorder"></i></a><a ng-href="#/account/" class="nav-brand">I Wish...</a><a class="btn btn-link visible-xs"><i class="icon-comment-alt"></i></a>
+          <header class="nav-bar dker"><a class="btn btn-link visible-xs"><i class="icon-reorder"></i></a><a ng-href="#/account/" class="nav-brand">I Wish... {{ testContent }}</a><a class="btn btn-link visible-xs"><i class="icon-comment-alt"></i></a>
           </header>
         </section>
         <section class="w-f">
@@ -47,14 +47,14 @@
       <div ng-view=""></div>
     </section>
 
-
-
     <script src="bower_components/angular/angular.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/account.js"></script>
+    <script src="scripts/services/account.js"></script>
+    <script src="scripts/controllers/aside.js"></script>
     <!-- endbuild -->
 </body>
 </html>
