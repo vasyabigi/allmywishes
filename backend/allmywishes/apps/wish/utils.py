@@ -1,6 +1,5 @@
 import urlparse
 import logging
-import json
 
 import requests
 
