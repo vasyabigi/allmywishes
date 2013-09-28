@@ -92,6 +92,7 @@ INSTALLED_APPS = (
 
     # Apps:
     'core',
+    'wish'
 )
 
 
