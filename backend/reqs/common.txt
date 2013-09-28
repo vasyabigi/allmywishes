@@ -2,3 +2,6 @@ django
 south
 fabric
 Pillow
+djangorestframework
+Markdown
+django-filter
