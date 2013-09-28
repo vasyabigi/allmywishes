@@ -29,45 +29,35 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: yeomanConfig,
     watch: {
-      coffee: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-        tasks: ['coffee:dist']
+      jade: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.jade'],
+        tasks: ['jade:server']
       },
-      coffeeTest: {
-        files: ['test/spec/{,*/}*.coffee'],
-        tasks: ['coffee:test']
+      html: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.html'],
+        tasks: ['copy:html']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['copy:styles', 'autoprefixer']
+        tasks: ['copy:styles']
       },
       livereload: {
         options: {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '.tmp/views/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
-    autoprefixer: {
-      options: ['last 1 version'],
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
-    },
+
     connect: {
       options: {
         port: 9000,
@@ -132,30 +122,6 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
-    coffee: {
-      options: {
-        sourceMap: true,
-        sourceRoot: ''
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/scripts',
-          src: '{,*/}*.coffee',
-          dest: '.tmp/scripts',
-          ext: '.js'
-        }]
-      },
-      test: {
-        files: [{
-          expand: true,
-          cwd: 'test/spec',
-          src: '{,*/}*.coffee',
-          dest: '.tmp/spec',
-          ext: '.js'
-        }]
-      }
-    },
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -174,6 +140,25 @@ module.exports = function (grunt) {
       server: {
         options: {
           debugInfo: true
+        }
+      }
+    },
+
+    jade: {
+      server: {
+        src: ['<%= yeoman.app %>/views/{,*/}*.jade'],
+        dest: '.tmp/views/',
+        options: {
+          client: false,
+          basePath: '<%= yeoman.app %>/views/',
+        }
+      },
+      dist: {
+        src: ['<%= yeoman.app %>/views/{,*/}*.jade'],
+        dest: '.tmp/views/',
+        options: {
+          client: false,
+          basePath: '<%= yeoman.dist %>/views/',
         }
       }
     },
@@ -290,23 +275,29 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      html: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/views',
+        dest: '.tmp/views/',
+        src: '{,*/}*.html'
       }
     },
     concurrent: {
       server: [
-        'coffee:dist',
+        'jade:server',
         'compass:server',
-        'copy:styles'
+        'copy:styles',
+        'copy:html'
       ],
       test: [
-        'coffee',
         'compass',
         'copy:styles'
       ],
       dist: [
-        'coffee',
         'compass:dist',
         'copy:styles',
+        'copy:html',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -352,7 +343,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'autoprefixer',
       'connect:livereload',
       'open',
       'watch'
@@ -362,7 +352,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
     'connect:test',
     'karma'
   ]);
@@ -371,7 +360,6 @@ module.exports = function (grunt) {
     'clean:dist',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
     'concat',
     'copy:dist',
     'cdnify',
