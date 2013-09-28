@@ -27,7 +27,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <section ng-if='!account.isAuthenticated' class="hbox stretch">
+    <section ng-if='account.isAuthenticated' class="hbox stretch">
       <aside id="nav" class="bg-dark aside-md" ng-class="{'nav-vertical': navVert}" ng-controller="AsideCtrl">
         <section class="vbox">
           <header class="nav-bar dker">
@@ -42,9 +42,8 @@
           <section class="w-f">
             <div class="lt nav-user hidden-xs pos-rlt">
               <div class="nav-avatar pos-rlt">
-                <a href="#" class="thumb-sm avatar animated rollIn">
-                  <img src="/images/face.jpeg" alt="FACE" />
-                  <!-- <span class="caret caret-white"></span> -->
+                <a ng-if='account.isAuthenticated' href="#" class="thumb-sm avatar animated rollIn">
+                  <img ng-src="account.image" alt="FACE" />
                 </a>
               </div>
             </div>
@@ -72,7 +71,7 @@
       <section class='content' ng-view=""></section>
     </section>
 
-    <div ng-if='account.isAuthenticated' class="modal in" style='display: block;' ng-controller='LoginCtrl'>
+    <div ng-if='!account.isAuthenticated' class="modal in" style='display: block;' ng-controller='LoginCtrl'>
       <div class="modal-over">
         <div class="modal-center animated flipInX">
           <div class="clear">
@@ -87,6 +86,8 @@
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="bower_components/angular-easyfb/angular-easyfb.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>

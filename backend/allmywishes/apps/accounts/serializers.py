@@ -9,4 +9,4 @@ class AccountInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('id', 'name', 'email', 'is_authenticated')
+        fields = ('id', 'name', 'email', 'is_authenticated', 'oauth_token')

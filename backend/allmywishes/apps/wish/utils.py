@@ -4,6 +4,8 @@ import logging
 import requests
 
 from django.conf import settings
+from django.core.files.base import ContentFile
+
 
 logger = logging.getLogger(__name__)
 
@@ -39,3 +41,21 @@ def get_wish_data(url):
         "price": None
     }
     return actual_data
+
+
+def fetch_image(url):
+    """
+        returns tuple: name, ContentFile instance
+        or
+        None if some error occurred!
+    """
+    try:
+        fetch_data = requests.get(url)
+    except requests.RequestException:
+        logger.error("Incorrect url %s" % url)
+        return None
+    if fetch_data.headers['content-type'].split('/')[0] != 'image':
+        logger.error("Seems it's not image %s" % url)
+        return None
+    name = urlparse.urlparse(url).path.split('/')[-1]
+    return name, ContentFile(fetch_data.content)

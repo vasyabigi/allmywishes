@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from django.template.defaultfilters import slugify
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-
-from unidecode import unidecode
+from django_extensions.db.fields import AutoSlugField
 
 
 class AccountManager(BaseUserManager):
@@ -25,8 +23,9 @@ class AccountManager(BaseUserManager):
 class Account(AbstractBaseUser, PermissionsMixin):
     facebook_id = models.CharField(max_length=255, unique=True, db_index=True)
     name = models.CharField(max_length=255)
-    slug = models.SlugField()
+    slug = AutoSlugField(populate_from="name", separator="")
     email = models.EmailField(max_length=255, blank=True, null=True)
+    oauth_token = models.TextField(null=True)
 
     # Django admin
     is_staff = models.BooleanField()
@@ -38,10 +37,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         ordering = ['name', 'email']
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(unidecode(self.name))
-        return super(Account, self).save(*args, **kwargs)
 
     def __str__(self):
         return '{name} <{facebook_id}>'.format(

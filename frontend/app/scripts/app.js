@@ -1,7 +1,12 @@
 'use strict';
 
-angular.module('frontendApp', ['ngRoute'])
-  .config(function ($routeProvider) {
+angular.module('frontendApp', ['ezfb', 'ngRoute'])
+  .config(['$routeProvider', '$FBProvider', function ($routeProvider, $FBProvider) {
+
+    $FBProvider.setInitParams({
+      appId: '107790869310294'
+    });
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -18,4 +23,4 @@ angular.module('frontendApp', ['ngRoute'])
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
