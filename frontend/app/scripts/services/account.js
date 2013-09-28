@@ -7,11 +7,11 @@ angular.module('frontendApp')
     var accountInfoUrl = '/api/accounts/info/',
         loginStatusDeferred = $q.defer();
 
-    $rootScope.user = { 'isAuthenticated': false };
+    $rootScope.account = { 'isAuthenticated': false };
 
     $http.get(accountInfoUrl).success(function(response) {
-      $rootScope.user = response;
-      loginStatusDeferred.resolve($rootScope.user);
+      $rootScope.account = response;
+      loginStatusDeferred.resolve($rootScope.account);
     }).error(function(reason) {
       console.log('Status error', reason);
       loginStatusDeferred.resolve(reason);
@@ -20,7 +20,22 @@ angular.module('frontendApp')
     // Public API here
     return {
       getStatus: function() {
+        if ($rootScope.account.isAuthenticated) {
+          var accountDeferred = $q.defer();
+          accountDeferred.resolve($rootScope.account);
+          return accountDeferred.promise;
+        }
+
         return loginStatusDeferred.promise;
+      },
+
+      login: function() {
+        var loginDeferred = $q.defer();
+
+        $rootScope.account = { 'isAuthenticated': true };
+        loginDeferred.resolve($rootScope.account);
+
+        return loginDeferred.promise;
       }
     };
   }]);
