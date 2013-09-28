@@ -1,10 +1,11 @@
 import urlparse
 import logging
-from django.core.files.base import ContentFile
 
 import requests
 
 from django.conf import settings
+from django.core.files.base import ContentFile
+
 
 logger = logging.getLogger(__name__)
 
