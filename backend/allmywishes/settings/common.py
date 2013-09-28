@@ -107,7 +107,18 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'core.renderers.CamelCaseJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+
+    'DEFAULT_PARSER_CLASSES': (
+        'core.parsers.CamelCaseJSONRenderer',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
 }
 
 
@@ -128,7 +139,7 @@ LOGGING = {
         'default': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': join(PROJECT_PATH, 'logs', 'vasyabigi.log'),
+            'filename': join(PROJECT_PATH, 'logs', 'allmywishes.log'),
             'maxBytes': 1024 * 1024 * 10,
             'backupCount': 50,
             'formatter': 'standard',
@@ -155,3 +166,9 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = 'accounts.Account'
+
+REDABILITY = {
+    "API_TOKEN": "dc16f836beb32cb92551b866ee683538dd2c4a4b",
+    "API_STARTPOINT": "http://www.readability.com/",
+    "API_PARSE_URL": "/api/content/v1/parser",
+}
