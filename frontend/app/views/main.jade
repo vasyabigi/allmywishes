@@ -1,5 +1,16 @@
-.hero-unit
-  h1 HELLO JADE
-
-  ul
-    li(ng-repeat="thing in awesomeThings") {{ thing }}
+section.hbox.stretch
+  //- aside
+  aside#nav.bg-dark.aside-md
+    section.vbox
+      header.nav-bar.dker
+        a.btn.btn-link.visible-xs
+          i.icon-reorder
+        a.nav-brand I Wish...
+        a.btn.btn-link.visible-xs
+          i.icon-comment-alt
+    section.w-f
+      div.lt.nav-user.hidden-xs.pos-rlt
+        div.nav-avatar.pos-rlt
+          a.thumb-sm.avatar.animated.rollIn(href="#")
+            img(src="/images/face.jpeg", alt="FACE")
+            span.caret.caret-white
