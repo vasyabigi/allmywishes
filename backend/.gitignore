@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+
+# Python
+*.pyc
+*.pyo
+
+# SQLite3 database files:
+*.db
+
+# Project
+/allmywishes/public/static
+/allmywishes/public/media
+/allmywishes/logs
