@@ -2079,7 +2079,7 @@ html.layout-box .vbox>section, html.layout-box .vbox>footer {
         display:none;
     }
     #nav.nav-vertical .nav-avatar>.thumb-sm {
-        width:100%;
+        // width:;
     }
     #nav.nav-vertical .nav-avatar .arrow {
         left:27px !important;
@@ -3345,9 +3345,4 @@ html.layout-box .vbox>section, html.layout-box .vbox>footer {
 .m-xl {
     margin-top:50px;
     margin-bottom:50px;
-}
-
-
-ul {
-  background: green !important;
 }
