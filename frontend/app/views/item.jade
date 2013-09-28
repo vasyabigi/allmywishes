@@ -10,7 +10,40 @@ section.vbox
             ul.steps
               li.active
                 span.badge.badge-info 1
+                span Step 1
               li
                 span.badge.badge-info 2
+                span Step 2
+
+          div.step-content
+            form
+              div.step-pane.active
+                h2 Step 1
+                p Paste your link here:
+                input.form-control(type='text', placeholder='website')
+
+              div.step-pane.active.m-t-lg
+                h2  Step 2
+                p Paste image link:
+                input.form-control(type='text', placeholder='website', ng-model='item.image')
+                img.m-t(ng-src="{{ item.image }}")
+                p Title:
+                input.form-control(type='text', placeholder='title', ng-model='item.title')
+                p Price:
+                input.form-control(type='text', placeholder='title', ng-model='item.price')
+
+
+            //- div.actions.m-t
+            //-   button.btn.btn-white.btn-sm.btn-prev(type='button', disabled='disabled') Prev
+            //-   button.btn.btn-white.btn-sm.btn-next.m-l-xs(type='button') Next
+
+      div.col-lg-4
+        div.dropdown
+          a.dropdown-toggle Click me for a dropdown, yo!
+          ul.dropdown-menu
+            li(ng-repeat="choice in testItems")
+              a {{ choice }}
+
+
 
 

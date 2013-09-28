@@ -2,9 +2,9 @@
 
 angular.module('frontendApp')
   .controller('ItemCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+    $scope.testItems = [
+      "The first choice!",
+      "And another choice for you.",
+      "but wait! A third!"
     ];
   });

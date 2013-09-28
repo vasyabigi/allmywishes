@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('frontendApp', ['ezfb', 'ngRoute'])
+angular.module('frontendApp', ['ezfb', 'ngRoute', 'ui.bootstrap'])
   .config(['$routeProvider', '$FBProvider', function ($routeProvider, $FBProvider) {
 
 
