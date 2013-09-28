@@ -93,7 +93,8 @@ INSTALLED_APPS = (
 
     # Apps:
     'core',
-    'wish'
+    'accounts',
+    'wish',
 )
 
 
@@ -153,3 +154,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_USER_MODEL = 'accounts.Account'

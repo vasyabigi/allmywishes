@@ -5,3 +5,4 @@ Pillow
 djangorestframework
 Markdown
 django-filter
+unidecode
