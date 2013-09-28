@@ -50,4 +50,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.name
 
+    def get_avatar_url(self, size=45):
+        return u"http://graph.facebook.com/%s/picture?width=%s&height=%s" % (self.facebook_id, size, size)
+
     objects = AccountManager()
