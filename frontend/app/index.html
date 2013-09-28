@@ -27,14 +27,14 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <section class="hbox stretch">
+    <section ng-if='!account.isAuthenticated' class="hbox stretch">
       <aside id="nav" class="bg-dark aside-md" ng-class="{'nav-vertical': navVert}" ng-controller="AsideCtrl">
         <section class="vbox">
           <header class="nav-bar dker">
             <a class="btn btn-link visible-xs">
               <i class="icon-reorder"></i>
             </a>
-            <a ng-href="#/account/" class="nav-brand">I Wish... {{ asideShown }}</a>
+            <a ng-href="#/account/" class="nav-brand">I Wish...</a>
             <a class="btn btn-link visible-xs">
               <i class="icon-comment-alt"></i>
             </a>
@@ -44,24 +44,26 @@
               <div class="nav-avatar pos-rlt">
                 <a href="#" class="thumb-sm avatar animated rollIn">
                   <img src="/images/face.jpeg" alt="FACE" />
-                  <span class="caret caret-white"></span>
-                  <a ng-click="login()">YEBASH</a>
+                  <!-- <span class="caret caret-white"></span> -->
                 </a>
               </div>
             </div>
             <nav class="nav-primary hidden-xs">
               <ul class="nav">
-                <li>
+                <li ng-repeat='item in navItems' ng-click='navItemClick()'>
                   <a href="#">
-                    <i class="icon-eye-open"></i>
-                    <span>Discover</span>
+                    <i class='{{ item.icon }}'></i>
+                    {{ item.text }}
                   </a>
                 </li>
               </ul>
             </nav>
           </section>
           <footer class='footer bg-gradient hidden-xs'>
-            <a href="" ng-click='navVert = !navVert' class="btn btn-sm btn-link m-l-n-sm">
+            <a href="#" ng-click='logout()' class="btn btn-sm btn-link m-r-n-xs pull-right" title="logout">
+              <i class="icon-off"></i>
+            </a>
+            <a href="#" ng-click='navVert = !navVert' class="btn btn-sm btn-link m-l-n-sm">
               <i class="icon-reorder"></i>
             </a>
           </footer>
@@ -70,11 +72,21 @@
       <section class='content' ng-view=""></section>
     </section>
 
-    <div class="modal in">
-
+    <div ng-if='account.isAuthenticated' class="modal in" style='display: block;' ng-controller='LoginCtrl'>
+      <div class="modal-over">
+        <div class="modal-center animated flipInX">
+          <div class="clear">
+            <a href="#" class="btn btn-lg btn-info" ng-click='login()'>
+              <i class="icon-facebook"></i>
+              LOGIN
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -82,6 +94,8 @@
     <script src="scripts/controllers/account.js"></script>
     <script src="scripts/services/account.js"></script>
     <script src="scripts/controllers/aside.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/item.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -36,6 +36,15 @@ angular.module('frontendApp')
         loginDeferred.resolve($rootScope.account);
 
         return loginDeferred.promise;
+      },
+
+      logout: function() {
+        var loginDeferred = $q.defer();
+
+        $rootScope.account = { 'isAuthenticated': false };
+        loginDeferred.resolve($rootScope.account);
+
+        return loginDeferred.promise;
       }
     };
   }]);
