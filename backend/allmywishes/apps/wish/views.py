@@ -15,7 +15,7 @@ class WishListCreate(generics.ListCreateAPIView):
     queryset = Wish.objects.all()
     serializer_class = WishSerializer
     permission_classes = (permissions.IsAuthenticated,)
-    paginate_by = 10
+    paginate_by = 50
 
     def get_queryset(self):
         return self.queryset.filter(account=self.request.user).all()
@@ -77,7 +77,7 @@ class WishDiscover(generics.ListAPIView):
     queryset = Wish.objects.all()
     serializer_class = WishWithAccountSerializer
     permission_classes = (permissions.IsAuthenticated,)
-    paginate_by = 10
+    paginate_by = 50
 
     def get_queryset(self):
         ids = self.request.GET.getlist("ids")

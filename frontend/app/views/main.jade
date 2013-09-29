@@ -1,22 +1,31 @@
 section.vbox
   header.header.bg-light.dker
+    div.pull-right.m-t-sm
+      div.btn-group
+        button.btn.btn-white(type='button', ng-model='listView', btn-radio="'table'")
+          i.icon-table
+        button.btn.btn-white(type='button', ng-model='listView', btn-radio="'list'")
+          i.icon-th-list
     p Welcome to our DjangoDash-2013 app
 
   section.scrollable.wrapper
     div.wrapper.bg-white.m-b
       h3.m-t-none How often have you wondered what to give to a friend for his birthday? We tried to solve this problem globally, not for a specific seller. Create your wishes, Discover friends wishes!
     div.row
-      div.col-lg-8
-        section.panel
+
+      //- Table view
+      div.col-lg-10(ng-if='listView == "table"')
+        div.panel
           header.panel-heading
-            h3.m-t-none Discover friends wishes
+            span.h4.m-t-none Your wishes
+            span.badge.bg-info.m-l {{ wishes.length }}
 
           div.table-responsive
             table.table.table-striped.b-t.text-sm.m-b-none
               thead
                 tr
                   th Title
-                  th Owner
+                  th(width='40') Owner
                   th.th-sortable Created
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
@@ -25,3 +34,35 @@ section.vbox
                   td
                     a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
                   td {{ wish.created | moment }}
+
+
+      //- List view
+      div.col-lg-10(ng-if='listView == "list"')
+        section.panel.portlet-item.list-view
+          header.panel-heading
+            div.row
+              div.col-sm-9
+                span.h4 Your wishes
+                span.badge.bg-info.m-l {{ wishes.length }}
+              div.col-sm-3
+                div.input-group
+                  input.form-control.input-sm(ng-model='searchInList', placeholder='search')
+                  span.input-group-btn
+                    span.btn.btn-sm.btn-success.btn-icon
+                      i.icon-search
+
+          section.panel-body
+            article.media.clearfix(ng-repeat-start='wish in wishes | filter:searchInList')
+              div.pull-left
+                img.img-full.list-image(ng-src='{{ wish.imageUrl || "/images/gift.png" }}')
+
+              div.pull-right.media-xs.text-right.text-muted
+                strong.h4 {{ wish.created | moment }}
+
+              div.media-body
+                a.h4(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
+                small.block.m-t-xs Owner:
+                  a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
+                em.text-xs Created
+                  span.text-danger.m-l-sm {{ wish.created | date:'medium' }}
+            div.line.pull-in(ng-repeat-end)
