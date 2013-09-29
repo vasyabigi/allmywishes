@@ -12,5 +12,5 @@ urlpatterns = patterns(
     # Wishes
     url(r'^(?P<slug>[\w-]+)$', 'account_details', name='account-details'),
     url(r'^(?P<slug>[\w-]+)/wishes$', wish_views.wish_list_create, name='wish-list-create'),
-    url(r'^(?P<slug>[\w-]+)/wishes/(?P<pk>\d+)$', wish_views.wish_retrieve, name='wish-retrieve'),
+    url(r'^(?P<slug>[\w-]+)/wishes/(?P<wish_slug>[\w-]+)$', wish_views.wish_retrieve, name='wish-retrieve'),
 )

@@ -20,6 +20,8 @@ section.vbox
                   th.th-sortable Created
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
-                  td {{ wish.title }}
-                  td {{ wish.account.name }}
+                  td
+                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.slug }}") {{ wish.title }}
+                  td
+                    a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
                   td {{ wish.created | moment }}

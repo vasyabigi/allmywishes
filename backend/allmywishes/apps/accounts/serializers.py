@@ -33,4 +33,4 @@ class AccountDetailSerializer(serializers.ModelSerializer):
 
     def get_wishes(self, obj):
         from wish.serializers import WishSerializer
-        return WishSerializer(obj.wishes.all(), many=True)
+        return WishSerializer(obj.wishes.all(), many=True).data

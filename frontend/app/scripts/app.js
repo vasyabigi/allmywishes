@@ -19,10 +19,6 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
       .when('/wishes/new', {
         templateUrl: 'views/item.html',
         controller: 'ItemCtrl'
@@ -31,9 +27,13 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
         templateUrl: 'views/wishes.html',
         controller: 'WishesCtrl'
       })
-      .when('/wishes/:id', {
+      .when('/:slug', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl'
+      })
+      .when('/:slug/wishes/:wishSlug', {
         templateUrl: 'views/wishDetails.html',
-        controller: 'WishdetailsCtrl'
+        controller: 'WishDetailsCtrl'
       })
       .otherwise({
         redirectTo: '/'
