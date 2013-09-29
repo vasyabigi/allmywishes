@@ -2,6 +2,9 @@
 
 angular.module('frontendApp')
   .controller('WishesCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', function ($scope, $rootScope, $timeout, Restangular) {
+
+    $scope.listView = 'list';
+
     var wishes = Restangular.one('wishes');
 
     wishes.getList('mine').then(function(response) {

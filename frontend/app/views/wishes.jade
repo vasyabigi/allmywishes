@@ -1,14 +1,23 @@
 section.vbox
   header.header.bg-light.dker
+    div.pull-right.m-t-sm
+      div.btn-group
+        button.btn.btn-white(type='button', ng-model='listView', btn-radio="'table'")
+          i.icon-table
+        button.btn.btn-white(type='button', ng-model='listView', btn-radio="'list'")
+          i.icon-th-list
     p List of wishes
 
   section.scrollable.wrapper
 
     div.row
-      div.col-lg-10
+
+      //- Table view
+      div.col-lg-10(ng-if='listView == "table"')
         div.panel
           header.panel-heading
-            h3.m-t-none Your wishes
+            span.h4.m-t-none Your wishes
+            span.badge.bg-info.m-l {{ wishes.length }}
 
           div.table-responsive
             table.table.table-striped.b-t.text-sm.m-b-none
@@ -30,3 +39,24 @@ section.vbox
                           a(href='', ng-click='remove($index, wish)') Remove
                         li
                           a(href='', ng-click='edit()') Edit
+
+      //- List view
+      div.col-lg-10(ng-if='listView == "list"')
+        section.panel.portlet-item
+          header.panel-heading
+            span.h4 Your wishes
+            span.badge.bg-info.m-l {{ wishes.length }}
+          section.panel-body
+            article.media(ng-repeat-start='wish in wishes')
+              div.pull-left
+                img.img-full.list-image(ng-src='{{ wish.imageUrl || "/images/gift.png" }}')
+              div.pull-right.media-xs.text-center.text-muted
+                strong.h4 {{ wish.created | moment }}
+              div.media-body
+                a.h4(ng-href='wish.url') {{ wish.title }}
+                small.block.m-t-xs {{ wish.description }}
+                em.text-xs Created
+                  span.text-danger.m-l-sm {{ wish.created }}
+            div.line.pull-in(ng-repeat-end)
+
+

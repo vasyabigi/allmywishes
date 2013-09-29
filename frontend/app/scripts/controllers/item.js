@@ -7,6 +7,7 @@ angular.module('frontendApp')
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
       $scope.secondStep = false;
+      $scope.urlInProgress = false;
       $scope.imageSrc = '';
       $scope.item = {};
 
@@ -17,11 +18,13 @@ angular.module('frontendApp')
       };
 
       $scope.processUrl = function(url){
+        $scope.urlInProgress = true;
         var promise = $wish.parse(url);
 
         promise.then(function(response) {
           $scope.item = response;
           $scope.secondStep = true;
+          $scope.urlInProgress = false;
         });
       };
 

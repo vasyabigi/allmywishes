@@ -26,7 +26,8 @@ section.vbox
                 div.input-group
                   input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
                   span.input-group-btn
-                    button.btn.btn-primary(type='submit', ng-click='processUrl(websiteUrl)') Process url
+                    button.btn.btn-primary(type='submit', ng-click='processUrl(websiteUrl)', ng-if='!urlInProgress') Process url
+                    button.btn.btn-success.active(ng-if='urlInProgress') Loading...
 
             div.step-pane(ng-class='{active: secondStep}')
               form(name='item_form')
