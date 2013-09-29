@@ -1,9 +1,10 @@
 django
 south
 fabric
-Pillow
 djangorestframework
+Pillow
 Markdown
 django-filter
 unidecode
 requests
+django-model-utils

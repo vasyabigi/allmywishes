@@ -13,7 +13,7 @@ angular.module('frontendApp')
       {
         text: 'New item',
         icon: 'icon-beaker',
-        href: '/item'
+        href: '/new-wish'
       }
     ];
 

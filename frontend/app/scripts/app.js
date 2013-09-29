@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('frontendApp', ['ezfb', 'ngRoute', 'ui.bootstrap'])
-  .config(['$routeProvider', '$FBProvider', function ($routeProvider, $FBProvider) {
+angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap'])
+  .config(['$routeProvider', '$FBProvider', 'RestangularProvider', function ($routeProvider, $FBProvider, RestangularProvider) {
 
 
     if (typeof String.prototype.startsWith !== 'function') {
@@ -27,7 +27,20 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'ui.bootstrap'])
         templateUrl: 'views/item.html',
         controller: 'ItemCtrl'
       })
+      .when('/new-wish', {
+        templateUrl: 'views/newWish.html',
+        controller: 'NewWishCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+
+    RestangularProvider.setBaseUrl('/api');
+
+  }]).run(['$http', function($http) {
+
+    // Django csrf token for POST
+    $http.defaults.xsrfCookieName = 'csrftoken';
+    $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+
   }]);
