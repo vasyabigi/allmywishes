@@ -1,6 +1,7 @@
 django
 south
 fabric
+django-extensions
 djangorestframework
 Pillow
 Markdown

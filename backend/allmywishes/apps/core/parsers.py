@@ -1,15 +1,19 @@
-from rest_framework.parsers import JSONParser
-from django.conf import settings
 import re
 import json
+import six
+
+from rest_framework.exceptions import ParseError
+from rest_framework.parsers import JSONParser
+
+from django.conf import settings
 
 first_cap_re = re.compile('(.)([A-Z][a-z]+)')
 all_cap_re = re.compile('([a-z0-9])([A-Z])')
 
 
 def camel_to_underscore(name):
-    s1 = first_cap_re.sub(r'\1_\2', name)
-    return all_cap_re.sub(r'\1_\2', s1).lower()
+    s1 = first_cap_re.sub(r"\1_\2", name)
+    return all_cap_re.sub(r"\1_\2", s1).lower()
 
 
 def underscoreize(data):
