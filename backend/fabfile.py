@@ -9,7 +9,7 @@ env.user = 'rambo'
 env.db = 'allmywishes'
 env.dbuser = 'pedro'
 # Paths
-env.project_dir = '/home/rambo/projects/allmywishes'
+env.project_dir = '/home/rambo/projects/allmywishes/backend'
 env.frontend_dir = '/home/rambo/projects/allmywishes/frontend'
 
 
