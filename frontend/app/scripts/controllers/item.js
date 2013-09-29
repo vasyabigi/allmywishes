@@ -26,6 +26,7 @@ angular.module('frontendApp')
 
         promise.then(function(response) {
           $scope.item = response;
+          $scope.secondStep = true;
         });
       };
 

@@ -106,7 +106,7 @@ class EmbedlyParser(object):
         return max(images, key=lambda l: l[1])[0]
 
     def is_valid(self):
-        return not self.obj["errors"]
+        return not bool(self.obj.get("error"))
 
     def errors(self):
         if not self.is_valid():
