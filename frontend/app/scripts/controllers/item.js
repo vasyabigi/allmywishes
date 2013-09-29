@@ -2,13 +2,14 @@
 
 angular.module('frontendApp')
   .controller('ItemCtrl', [
-      '$scope', '$rootScope', '$timeout',
-      'Restangular', '$validImg', '$wish',
+    '$scope', '$rootScope', '$timeout',
+    'Restangular', '$validImg', '$wish',
     function ($scope, $rootScope, $timeout,
         Restangular, $validImg, $wish) {
 
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
+      $scope.secondStep = false;
       $scope.item = {
         // image: '',
         // title: '',

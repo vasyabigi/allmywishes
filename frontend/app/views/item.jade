@@ -8,26 +8,33 @@ section.vbox
         section.panel
           div#form-wizard.wizard.clearfix
             ul.steps
-              li.active
+              li(ng-class='{active: !secondStep}', ng-click="secondStep = false")
                 span.badge.badge-info 1
                 span Step 1
-              li
+              li(ng-class='{active: secondStep}')
                 span.badge.badge-info 2
                 span Step 2
 
           div.step-content
-            div.step-pane.active
+            div.step-pane(ng-class='{active: !secondStep}')
               form
+                button.btn.btn-white.btn-sm(type='button', ng-click="secondStep = true") Skip
+                  i.icon-chevron-right.m-l-sm
+
                 h2 Step 1
                 label(for='website') Paste your link here:
                 div.input-group
                   input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
                   span.input-group-btn
-                    button.btn.btn-primary(type='submit' ,ng-click='processUrl(websiteUrl)') Process url
+                    button.btn.btn-primary(type='submit', ng-click='processUrl(websiteUrl)') Process url
 
-            div.step-pane.active.m-t-lg
+            div.step-pane(ng-class='{active: secondStep}')
               form(name='item_form')
-                h2  Step 2
+                button.btn.btn-white.btn-sm(type='button', ng-click="secondStep = false")
+                  i.icon-chevron-left.m-r-sm
+                  | Back
+
+                h2 Step 2
                 div.row
                   div.col-lg-12.m-b.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.title)}')
                     label.control-label(for='item-title') Title:
@@ -42,28 +49,22 @@ section.vbox
                       type='text',
                       placeholder='image url',
                       ng-model='itemImgUrl',
-                      id='image')
+                      id='image'
+                    )
                     div.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.price)}')
                       label.control-label.m-t(for='item-price') Price:
                       input.form-control(
                         id='item-price', type='text', name='price', placeholder='price $',
-                        ng-model='item.price')
-                    label(for='item-description') Description
-                    textarea.form-control(
-                      placeholder='description...',
-                      id='item-description',
-                      ng-model='item.description',
-                    )
+                        ng-model='item.price'
+                      )
+                    div.form-group
+                      label.control-label(for='item-description') Description
+                      textarea.form-control.img-full(
+                        placeholder='description...',
+                        id='item-description',
+                        ng-model='item.description',
+                      )
+
                     button.btn.btn-success.m-t(type='submit', ng-click='saveItem()', ng-disabled='item_form.$invalid') Create
 
 
-            //- div.actions.m-t
-            //-   button.btn.btn-white.btn-sm.btn-prev(type='button', disabled='disabled') Prev
-            //-   button.btn.btn-white.btn-sm.btn-next.m-l-xs(type='button') Next
-
-      div.col-lg-4
-        div.dropdown
-          a.dropdown-toggle Click me for a dropdown, yo!
-          ul.dropdown-menu
-            li(ng-repeat='choice in testItems')
-              a {{ choice }}
