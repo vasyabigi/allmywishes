@@ -1,7 +1,7 @@
 from django.contrib import auth
 
 from .models import Account
-from .serializers import AccountInfoSerializer
+from .serializers import AccountInfoSerializer, AccountDetailSerializer
 
 from rest_framework import generics, permissions, response, status
 
@@ -19,32 +19,6 @@ class AccountInfo(generics.GenericAPIView):
         return response.Response(serializer.data, status=status.HTTP_200_OK)
 
 account_info = AccountInfo.as_view()
-
-
-class AccountLogin(generics.GenericAPIView):
-    model = Account
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = AccountInfoSerializer
-
-    def post(self, request, *args, **kwargs):
-        # TODO: Need to check signedRequest LOL
-        facebook_id = request.DATA.get("facebook_id")
-        if not Account.objects.filter(facebook_id=facebook_id).exists():
-            return response.Response({"is_authenticated": False}, status=status.HTTP_400_BAD_REQUEST)
-
-        account = Account.objects.filter(facebook_id=facebook_id).get()
-
-        # authentication
-        account = auth.authenticate(
-            oauth_token=request.DATA.get("oauth_token"),
-            facebook_id=facebook_id
-        )
-        auth.login(request, account)
-
-        serializer = self.get_serializer(instance=account)
-        return response.Response(serializer.data, status=status.HTTP_200_OK)
-
-account_login = AccountLogin.as_view()
 
 
 class AccountConnect(generics.GenericAPIView):
@@ -99,3 +73,11 @@ class AccountLogout(generics.GenericAPIView):
         return response.Response({"is_authenticated": False}, status=status.HTTP_200_OK)
 
 account_logout = AccountLogout.as_view()
+
+
+class AccountDetails(generics.RetrieveAPIView):
+    model = Account
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = AccountDetailSerializer
+
+account_details = AccountDetails.as_view()

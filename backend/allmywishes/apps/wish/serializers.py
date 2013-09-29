@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+
 from .models import Wish
 from accounts.serializers import AccountPublicSerializer
 
@@ -24,9 +26,13 @@ class WishSerializer(WishMixin, serializers.ModelSerializer):
 
 
 class WishWithAccountSerializer(WishMixin, serializers.ModelSerializer):
+    url = serializers.SerializerMethodField('get_wish_url')
     account = AccountPublicSerializer()
     image_url = serializers.SerializerMethodField('get_image_url')
 
     class Meta:
         model = Wish
-        fields = ('id', 'title', 'description', 'created', 'image_url', 'account')
+        fields = ('id', 'title', 'description', 'created', 'image_url', 'account', 'url')
+
+    def get_wish_url(self, obj):
+        return reverse('wish-retrieve', kwargs={'slug': obj.account.slug, 'pk': obj.pk})
