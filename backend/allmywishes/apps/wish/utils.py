@@ -62,7 +62,6 @@ class ParseWishItem(object):
             name = image["src"].split("/")[-1]
             if image["src"].lower().startswith("http") and not name.endswith("gif"):
                 src = image["src"].lower()
-                print "processing %s" % src
                 try:
                     r = requests.head(src)
                     size = int(r.headers['content-length'])
@@ -109,3 +108,13 @@ class EmbedlyParser(object):
         self.image_src = self.item_data.get("thumbnail_url")
         self.provider = self.item_data.get("provider_name")
         return self.item_data
+
+    def is_valid(self):
+        return self.item_data is not None
+
+    def errors(self):
+        if not self.is_valid():
+            return {
+                "errors": ["Provided url unreachable"]
+            }
+        return None
