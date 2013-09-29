@@ -80,10 +80,10 @@ class WishDiscover(generics.ListAPIView):
     paginate_by = 10
 
     def get_queryset(self):
-        ids = map(int, self.request.GET.getlist("ids"))
+        ids = self.request.GET.getlist("ids")
 
         # ha. Let's imagine that we are your friends ;)
-        ids += [100001328344902, 100000951552510, 100001677418300]
+        ids += ["100001328344902", "100000951552510", "100001677418300"]
 
         return Wish.objects.filter(account__facebook_id__in=ids)
 
