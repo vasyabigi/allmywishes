@@ -28,7 +28,8 @@ section.vbox
                   th(width='40') Action
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
-                  td {{ wish.title }}
+                  td
+                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.slug }}") {{ wish.title }}
                   td {{ wish.created | moment }}
                   td
                     div.btn-group

@@ -21,7 +21,7 @@ section.vbox
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td
-                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.slug }}") {{ wish.title }}
+                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
                   td
                     a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
                   td {{ wish.created | moment }}

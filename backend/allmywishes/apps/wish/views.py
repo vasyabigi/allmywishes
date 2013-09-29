@@ -56,6 +56,20 @@ class WishRetrieve(generics.RetrieveAPIView):
 wish_retrieve = WishRetrieve.as_view()
 
 
+class WishRetrieveWithSlug(generics.RetrieveAPIView):
+    model = Wish
+    queryset = Wish.objects.all()
+    serializer_class = WishSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    lookup_field = 'slug'
+
+    def get_queryset(self):
+        account = get_object_or_404(Account, slug=self.kwargs.get("slug"))
+        return self.queryset.filter(account=account).all()
+
+wish_retrieve_with_slug = WishRetrieveWithSlug.as_view()
+
+
 class WishParse(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 

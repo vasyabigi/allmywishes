@@ -35,4 +35,4 @@ class WishWithAccountSerializer(WishMixin, serializers.ModelSerializer):
         fields = ('id', 'title', 'description', 'created', 'image_url', 'account', 'url', 'slug')
 
     def get_wish_url(self, obj):
-        return reverse('wish-retrieve', kwargs={'slug': obj.account.slug, 'wish_slug': obj.slug})
+        return reverse('wish-retrieve', kwargs={'slug': obj.account.slug, 'pk': obj.pk})
