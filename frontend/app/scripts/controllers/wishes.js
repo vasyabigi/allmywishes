@@ -2,9 +2,9 @@
 
 angular.module('frontendApp')
   .controller('WishesCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', function ($scope, $rootScope, $timeout, Restangular) {
-    var account = Restangular.one('accounts', $rootScope.account.slug);
+    var wishes = Restangular.one('wishes');
 
-    account.getList('wishes').then(function(response) {
+    wishes.getList('mine').then(function(response) {
       $scope.wishes = response;
     }, function() {
       console.log('error');

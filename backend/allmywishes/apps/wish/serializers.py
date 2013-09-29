@@ -8,7 +8,7 @@ class WishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Wish
-        fields = ('id', 'title', 'description', 'price', 'created', 'image_url')
+        fields = ('id', 'title', 'description', 'created', 'image_url')
 
     def get_image_url(self, obj):
         if obj is not None and obj.image is not None:
@@ -16,4 +16,5 @@ class WishSerializer(serializers.ModelSerializer):
                 return obj.image.url
             except ValueError:
                 pass
+
         return None

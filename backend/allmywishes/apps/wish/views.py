@@ -18,12 +18,7 @@ class WishListCreate(generics.ListCreateAPIView):
     paginate_by = 10
 
     def get_queryset(self):
-        try:
-            account = Account.objects.get(slug=self.kwargs.get("slug"))
-        except Account.DoesNotExist:
-            return []
-        else:
-            return self.queryset.filter(account=account).all()
+        return self.queryset.filter(account=self.request.user).all()
 
     def pre_save(self, obj):
         if self.request.user.is_authenticated():
@@ -55,10 +50,8 @@ class WishRetrieve(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        user = self.request.user
-        user_slug = self.kwargs.get("slug")
-        user_dst = get_object_or_404(Account, slug=user_slug)
-        return user_dst.wishes.all()
+        account = get_object_or_404(Account, slug=self.kwargs.get("slug"))
+        return self.queryset.filter(account=account).all()
 
 wish_retrieve = WishRetrieve.as_view()
 
@@ -77,3 +70,21 @@ class WishParse(APIView):
         return Response(parser.errors(), status=404)
 
 wish_parse = WishParse.as_view()
+
+
+class WishDiscover(generics.ListAPIView):
+    model = Wish
+    queryset = Wish.objects.all()
+    serializer_class = WishSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    paginate_by = 10
+
+    def get_queryset(self):
+        ids = map(int, self.request.GET.getlist("ids"))
+
+        # ha. Let's imagine that we are your friends ;)
+        ids += [100001328344902, 100000951552510, 100001677418300]
+
+        return Wish.objects.filter(account__facebook_id__in=ids)
+
+wish_discover = WishDiscover.as_view()

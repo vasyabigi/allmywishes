@@ -52,12 +52,6 @@ section.vbox
                       ng-model='item.image',
                       id='image'
                     )
-                    div.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.price)}')
-                      label.control-label.m-t(for='item-price') Price:
-                      input.form-control(
-                        id='item-price', type='text', name='price', placeholder='price $',
-                        ng-model='item.price'
-                      )
                     div.form-group
                       label.control-label(for='item-description') Description
                       textarea.form-control.img-full(
@@ -67,5 +61,3 @@ section.vbox
                       )
 
                     button.btn.btn-success.m-t(type='submit', ng-click='saveItem()', ng-disabled='item_form.$invalid') Create
-
-

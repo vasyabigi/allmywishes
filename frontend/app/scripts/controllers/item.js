@@ -1,22 +1,19 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('ItemCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', '$validImg', '$wish',
-    function ($scope, $rootScope, $timeout, Restangular, $validImg, $wish) {
+  .controller('ItemCtrl', ['$scope', '$rootScope', '$location', 'Restangular', '$validImg', '$wish',
+    function ($scope, $rootScope, $location, Restangular, $validImg, $wish) {
 
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
       $scope.secondStep = false;
       $scope.imageSrc = '';
-      $scope.item = {
-        // image: '',
-        // title: '',
-        // price: ''
-      };
+      $scope.item = {};
 
       $scope.saveItem = function() {
         account.post('wishes', $scope.item);
         $scope.item = {};
+        $location.path('/wishes');
       };
 
       $scope.processUrl = function(url){

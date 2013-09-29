@@ -1,11 +1,31 @@
 section.vbox
   header.header.bg-light.dker
-    p Welcome to our app
+    p Welcome to our DjangoDash-2013 app
 
   section.scrollable.wrapper
     div.row
       div.col-lg-8
         section.panel
-          div.panel-body Main page
+          header.panel-heading
+            h3.m-t-none Discover friends wishes
 
-
+          div.table-responsive
+            table.table.table-striped.b-t.text-sm.m-b-none
+              thead
+                tr
+                  th Title
+                  th.th-sortable Created
+                  th(width='40') Action
+              tbody
+                tr.text-lg(ng-repeat='wish in wishes')
+                  td {{ wish.title }}
+                  td {{ wish.created | moment }}
+                  td
+                    div.btn-group
+                      a(href='').dropdown-toggle
+                        i.icon-pencil
+                      ul.dropdown-menu.pull-right.text-right
+                        li
+                          a(href='', ng-click='remove($index, wish)') Remove
+                        li
+                          a(href='', ng-click='edit()') Edit

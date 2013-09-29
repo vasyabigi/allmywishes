@@ -10,7 +10,6 @@ class Wish(TimeStampedModel, models.Model):
     src_url = models.URLField(blank=True, null=True)
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField(blank=True, null=True)
-    price = models.FloatField(blank=True, null=True)
     image = models.ImageField(upload_to="wishes/", blank=True, null=True)
 
     class Meta:
