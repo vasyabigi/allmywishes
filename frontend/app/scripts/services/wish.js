@@ -13,7 +13,7 @@ angular.module('frontendApp')
           $http.get(parseApiUrl, {params: {url: url}}).success(function(response) {
             var addaptedData = {
               title: response.title,
-              image: response.thumbnailUrl,
+              image: response.imageSrc,
               description: response.description
             };
 

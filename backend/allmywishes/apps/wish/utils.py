@@ -7,6 +7,9 @@ import requests
 
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.template.defaultfilters import truncatechars
+
+from embedly import Embedly
 
 
 logger = logging.getLogger(__name__)
@@ -87,34 +90,28 @@ class EmbedlyParser(object):
 
     def __init__(self, url):
         self.url = url
-        self.title = None
-        self.description = None
-        self.image_src = None
-        self.provider = None
-        self.item_data = self.__parse()
+        client = Embedly(settings.EMBEDLY_API_KEY)
+        self.obj = client.extract(self.url)
 
-    def __parse(self):
-        payload = {
-            'url': self.url,
-            'token': settings.EMBEDLY["API_KEY"]
+    def prepared_data(self):
+        return {
+            "title": truncatechars(self.obj["title"], 100),
+            "description": self.obj["title"],
+            "provider_name": self.obj["provider_name"],
+            "image_src": self.get_main_image_src()
+
         }
-        r = requests.get(settings.EMBEDLY["API_URL"], params=payload)
-        if r.status_code != requests.codes.ok:
-            logger.error("Bad status code: %s" % r.status_code)
-            return None
-        self.item_data = r.json()
-        self.title = self.item_data.get("title")
-        self.description = self.item_data.get("description")
-        self.image_src = self.item_data.get("thumbnail_url")
-        self.provider = self.item_data.get("provider_name")
-        return self.item_data
+
+    def get_main_image_src(self):
+        images = [[x["url"], x["size"]] for x in self.obj["images"]]
+        return max(images, key=lambda l: l[1])[0]
 
     def is_valid(self):
-        return self.item_data is not None
+        return not bool(self.obj.get("error"))
 
     def errors(self):
         if not self.is_valid():
             return {
-                "errors": ["Provided url unreachable"]
+                "errors": "Provided url unreachable"
             }
         return None

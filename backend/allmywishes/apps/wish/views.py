@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from wish.utils import EmbedlyParser
+from wish.utils import EmbedlyParser, fetch_image
 from .models import Wish
 from .serializers import WishSerializer
 from .permissions import IsWishOwnerPermission
@@ -26,7 +26,14 @@ class WishListCreate(generics.ListCreateAPIView):
 
     def pre_save(self, obj):
         if self.request.user.is_authenticated():
+            #print self.get_serializer().__dict__
+            #import ipdb; ipdb.set_trace()
             obj.account = self.request.user
+            image_src = self.request.DATA.get("image")
+            if image_src is not None:
+                image_data = fetch_image(image_src)
+                if image_data is not None:
+                    obj.image.save(*image_data)
 
 wish_list_create = WishListCreate.as_view()
 
@@ -50,7 +57,7 @@ class WishParse(APIView):
         url = request.GET.get("url")
         parser = EmbedlyParser(url)
         if parser.is_valid():
-            return Response(parser.item_data)
+            return Response(parser.prepared_data())
         return Response(parser.errors(), status=404)
 
 wish_parse = WishParse.as_view()
