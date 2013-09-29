@@ -18,3 +18,5 @@ section.vbox
               div.text-muted
                 i.icon-time.icon-muted
                 | {{ wish.created | date:'medium' }}
+                i.icon-user.icon-muted.m-l
+                | by {{ wish.parentResource.id }}

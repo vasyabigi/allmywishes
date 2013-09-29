@@ -1,6 +1,6 @@
 section.vbox
   header.header.bg-light.dker
-    p Add anything you wish by providing web url to product or service, also you can add/edit data manually
+    р4 Add anything you wish by providing web url to product or service, also you can add/edit data manually
 
   section.scrollable.wrapper
     div.row
@@ -17,16 +17,16 @@ section.vbox
 
           div.step-content
             div.step-pane(ng-class='{active: !secondStep}')
-              form
+              form(name='url_form', ng-submit='processUrl(websiteUrl)')
                 button.btn.btn-white.btn-sm(type='button', ng-click="secondStep = true") Skip
                   i.icon-chevron-right.m-l-sm
 
                 h2 Step 1
                 label(for='website') Paste your link here:
-                div.input-group
-                  input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
+                div.input-group.form-group(ng-class='{"has-error": dirtyAndInvalid(url_form.websiteUrl)}')
+                  input.form-control(type='text', name='websiteUrl', ng-model="websiteUrl", placeholder='website', id='website', required)
                   span.input-group-btn
-                    button.btn.btn-primary(type='submit', ng-click='processUrl(websiteUrl)', ng-if='!urlInProgress') Process url
+                    button.btn.btn-primary(type='submit', ng-if='!urlInProgress') Process url
                     button.btn.btn-success.active(ng-if='urlInProgress') Loading...
 
             div.step-pane(ng-class='{active: secondStep}')
