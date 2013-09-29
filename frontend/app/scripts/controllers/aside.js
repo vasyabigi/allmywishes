@@ -10,7 +10,7 @@ angular.module('frontendApp')
       {
         text: 'Discover',
         icon: 'icon-eye-open',
-        href: '/discover'
+        href: '/'
       },
       {
         text: 'New item',
