@@ -177,3 +177,8 @@ REDABILITY = {
     "API_STARTPOINT": "http://www.readability.com/",
     "API_PARSE_URL": "/api/content/v1/parser",
 }
+
+EMBEDLY = {
+    "API_KEY": "5c56637d4cd94a5281bbdb08c9ed86b4",
+    "API_URL": "https://api.embed.ly/1/oembed"
+}
