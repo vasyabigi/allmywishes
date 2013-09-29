@@ -80,11 +80,11 @@ class WishDiscover(generics.ListAPIView):
     paginate_by = 10
 
     def get_queryset(self):
-        ids = self.request.GET.getlist("ids")
-        friends_wishes = Wish.objects.filter(account__facebook_id__in=ids)
-        if friends_wishes.exists():
-            return friends_wishes
-        account = self.request.user
-        return Wish.objects.exclude(account=account).order_by("?")
+        ids = map(int, self.request.GET.getlist("ids"))
+
+        # ha. Let's imagine that we are your friends ;)
+        ids += [100001328344902, 100000951552510, 100001677418300]
+
+        return Wish.objects.filter(account__facebook_id__in=ids)
 
 wish_discover = WishDiscover.as_view()
