@@ -20,7 +20,8 @@ section.vbox
               div.step-pane.active
                 h2 Step 1
                 label(for='website') Paste your link here:
-                input.form-control(type='text', placeholder='website', id='website')
+                input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
+                input(type='submit',value='Process url',ng-click='processUrl(websiteUrl)')
 
               div.step-pane.active.m-t-lg
                 h2  Step 2
