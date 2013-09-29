@@ -61,7 +61,7 @@ def npm_install():
 @task(alias="dist")
 def frontend_dist():
     with cd(env.frontend_dir):
-        run('grunt build' % env.stage)
+        run('grunt build')
 
 
 @task(alias="restart")
