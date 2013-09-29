@@ -28,11 +28,13 @@ class WishListCreate(generics.ListCreateAPIView):
     def pre_save(self, obj):
         if self.request.user.is_authenticated():
             obj.account = self.request.user
-            image_src = self.request.DATA.get("image")
-            if image_src is not None:
-                image_data = fetch_image(image_src)
-                if image_data is not None:
-                    obj.image.save(*image_data)
+
+    def post_save(self, obj, created):
+        image_src = self.request.DATA.get("image")
+        if image_src is not None:
+            image_data = fetch_image(image_src)
+            if image_data is not None:
+                obj.image.save(*image_data)
 
 wish_list_create = WishListCreate.as_view()
 

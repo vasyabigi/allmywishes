@@ -48,7 +48,8 @@ class EmbedlyParser(object):
 
     def get_main_image_src(self):
         images = [[x["url"], x["size"]] for x in self.obj["images"]]
-        return max(images, key=lambda l: l[1])[0]
+        if images:
+            return max(images, key=lambda l: l[1])[0]
 
     def is_valid(self):
         return not bool(self.obj.get("error"))
