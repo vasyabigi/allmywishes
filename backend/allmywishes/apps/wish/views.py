@@ -84,6 +84,7 @@ class WishDiscover(generics.ListAPIView):
     queryset = Wish.objects.all()
     serializer_class = WishSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    paginate_by = 10
 
     def get_queryset(self):
         ids = self.request.GET.getlist("ids")
@@ -91,6 +92,6 @@ class WishDiscover(generics.ListAPIView):
         if friends_wishes.exists():
             return friends_wishes
         account = self.request.user
-        return Wish.objects.exclude(account=account).order_by("?")[:20]
+        return Wish.objects.exclude(account=account).order_by("?")
 
 wish_discover = WishDiscover.as_view()
