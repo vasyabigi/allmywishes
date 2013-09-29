@@ -12,5 +12,8 @@ class WishSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, obj):
         if obj.image is not None:
-            return obj.image.url
+            try:
+                return obj.image.url
+            except ValueError:
+                pass
         return None
