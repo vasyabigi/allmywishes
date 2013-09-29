@@ -9,30 +9,6 @@ section.vbox
     p Welcome to our DjangoDash-2013 app
 
   section.scrollable.wrapper
-    div.row
-      div.col-lg-8
-        section.panel
-          header.panel-heading
-            h3.m-t-none Discover friends wishes
-
-          div.table-responsive
-            table.table.table-striped.b-t.text-sm.m-b-none
-              thead
-                tr
-                  th Title
-                  th Owner
-                  th.th-sortable Created
-              tbody
-                tr.text-lg(ng-repeat='wish in wishes')
-                  td
-                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
-                  td
-                    a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
-                  td {{ wish.created | moment }}
-
-
-
-  section.scrollable.wrapper
 
     div.row
 
