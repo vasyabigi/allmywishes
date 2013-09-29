@@ -32,11 +32,19 @@ section.vbox
                     img.m-t(ng-src="{{ item.image || '/images/gift.png' }}", ng-class="{'empty-img': !item.image}")
                   div.col-lg-6
                     label(for='item-image') Paste image link:
-                    input.form-control(type='text', placeholder='image url', ng-model='itemImgUrl', id='image')
+                    input.form-control(
+                      type='text',
+                      placeholder='image url',
+                      ng-model='itemImgUrl',
+                      id='image')
                     label.m-t(for='item-price') Price:
-                    input.form-control(type='text', placeholder='price $', ng-model='item.price', id='item-price')
+                    input.form-control(
+                      type='text',
+                      placeholder='price $',
+                      ng-model='item.price',
+                      id='item-price')
 
-
+                input(type='submit',value='PIZDANYT',ng-click='saveItem()')
 
             //- div.actions.m-t
             //-   button.btn.btn-white.btn-sm.btn-prev(type='button', disabled='disabled') Prev
@@ -46,9 +54,5 @@ section.vbox
         div.dropdown
           a.dropdown-toggle Click me for a dropdown, yo!
           ul.dropdown-menu
-            li(ng-repeat="choice in testItems")
+            li(ng-repeat='choice in testItems')
               a {{ choice }}
-
-
-
-

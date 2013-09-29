@@ -97,29 +97,7 @@ INSTALLED_APPS = (
     'wish',
 )
 
-
-REST_FRAMEWORK = {
-    # Use hyperlinked styles by default.
-    # Only used if the `serializer_class` attribute is not set on a view.
-    'DEFAULT_MODEL_SERIALIZER_CLASS': 'rest_framework.serializers.HyperlinkedModelSerializer',
-
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-
-    'DEFAULT_RENDERER_CLASSES': (
-        'core.renderers.CamelCaseJSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ),
-
-    'DEFAULT_PARSER_CLASSES': (
-        'core.parsers.CamelCaseJSONRenderer',
-        'rest_framework.parsers.FormParser',
-        'rest_framework.parsers.MultiPartParser'
-    ),
-}
+APPEND_SLASH = False
 
 
 LOGGING = {
@@ -165,6 +143,29 @@ LOGGING = {
     }
 }
 
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS': 'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'core.renderers.CamelCaseJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+
+    'DEFAULT_PARSER_CLASSES': (
+        'core.parsers.CamelCaseJSONRenderer',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ),
+}
+
 AUTHENTICATION_BACKENDS = (
     'accounts.backends.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -176,4 +177,9 @@ REDABILITY = {
     "API_TOKEN": "dc16f836beb32cb92551b866ee683538dd2c4a4b",
     "API_STARTPOINT": "http://www.readability.com/",
     "API_PARSE_URL": "/api/content/v1/parser",
+}
+
+EMBEDLY = {
+    "API_KEY": "5c56637d4cd94a5281bbdb08c9ed86b4",
+    "API_URL": "https://api.embed.ly/1/oembed"
 }

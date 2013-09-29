@@ -1,21 +1,30 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('ItemCtrl', ['$scope', '$validImg', function ($scope, $validImg) {
-    $scope.item = {
-      // image: '',
-      // title: '',
-      // price: ''
-    };
-    $scope.itemImgUrl = '';
+  .controller('ItemCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', '$validImg',
+    function ($scope, $rootScope, $timeout, Restangular, $validImg) {
 
-    $scope.$watch('itemImgUrl', function(newVal, oldVal) {
-      var validPromise = $validImg.valid(newVal);
+      var account = Restangular.one('accounts', $rootScope.account.slug);
 
-      validPromise.then(function(valid) {
-        $scope.item.image = valid ? newVal : false;
+      $scope.item = {
+        // image: '',
+        // title: '',
+        // price: ''
+      };
+
+      $scope.saveItem = function() {
+        account.post('wishes', $scope.item);
+        $scope.item = {};
+      };
+
+      $scope.itemImgUrl = '';
+
+      $scope.$watch('itemImgUrl', function(newVal) {
+        var validPromise = $validImg.valid(newVal);
+
+        validPromise.then(function(valid) {
+          $scope.item.image = valid ? newVal : false;
+        });
       });
-    });
 
-
-  }]);
+    }]);
