@@ -19,18 +19,23 @@ section.vbox
             form
               div.step-pane.active
                 h2 Step 1
-                p Paste your link here:
-                input.form-control(type='text', placeholder='website')
+                label(for='website') Paste your link here:
+                input.form-control(type='text', placeholder='website', id='website')
 
               div.step-pane.active.m-t-lg
                 h2  Step 2
-                p Paste image link:
-                input.form-control(type='text', placeholder='website', ng-model='item.image')
-                img.m-t(ng-src="{{ item.image }}")
-                p Title:
-                input.form-control(type='text', placeholder='title', ng-model='item.title')
-                p Price:
-                input.form-control(type='text', placeholder='title', ng-model='item.price')
+                div.row
+                  div.col-lg-12.m-b
+                    label(for='item-title') Title:
+                    input.form-control(type='text', placeholder='title', ng-model='item.title', id='item-title')
+                  div.col-lg-6.img-full.text-center
+                    img.m-t(ng-src="{{ item.image || '/images/gift.png' }}", ng-class="{'empty-img': !item.image}")
+                  div.col-lg-6
+                    label(for='item-image') Paste image link:
+                    input.form-control(type='text', placeholder='image url', ng-model='itemImgUrl', id='image')
+                    label.m-t(for='item-price') Price:
+                    input.form-control(type='text', placeholder='price $', ng-model='item.price', id='item-price')
+
 
 
             //- div.actions.m-t
