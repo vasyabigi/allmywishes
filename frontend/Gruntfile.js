@@ -210,7 +210,7 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.dist %>/views/',
         options: {
           client: false,
-          basePath: '<%= yeoman.dist %>/views/'
+          basePath: '<%= yeoman.app %>/views/'
         }
       }
     },
@@ -388,7 +388,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'configureProxies',
       'connect:livereload',
-      'open',
+      // 'open',
       'watch'
     ]);
   });
