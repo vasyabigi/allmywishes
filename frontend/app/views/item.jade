@@ -16,7 +16,7 @@ section.vbox
                 span Step 2
 
           div.step-content
-            form
+            form(name='item_form')
               div.step-pane.active
                 h2 Step 1
                 label(for='website') Paste your link here:
@@ -25,26 +25,27 @@ section.vbox
               div.step-pane.active.m-t-lg
                 h2  Step 2
                 div.row
-                  div.col-lg-12.m-b
-                    label(for='item-title') Title:
-                    input.form-control(type='text', placeholder='title', ng-model='item.title', id='item-title')
+                  div.col-lg-12.m-b.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.title)}')
+                    label.control-label(for='item-title') Title:
+                    input.form-control(id='item-title', type='text', name='title', placeholder='title', ng-model='item.title', required)
+                    span.help-block.m-b-none(ng-if='dirtyAndInvalid(item_form.title)') Title is required
+
                   div.col-lg-6.img-full.text-center
                     img.m-t(ng-src="{{ item.image || '/images/gift.png' }}", ng-class="{'empty-img': !item.image}")
                   div.col-lg-6
-                    label(for='item-image') Paste image link:
+                    label.control-label(for='item-image') Paste image link:
                     input.form-control(
                       type='text',
                       placeholder='image url',
                       ng-model='itemImgUrl',
                       id='image')
-                    label.m-t(for='item-price') Price:
-                    input.form-control(
-                      type='text',
-                      placeholder='price $',
-                      ng-model='item.price',
-                      id='item-price')
+                    div.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.price)}')
+                      label.control-label.m-t(for='item-price') Price:
+                      input.form-control(
+                        id='item-price', type='text', name='price', placeholder='price $',
+                        ng-model='item.price')
+                    button.btn.btn-success.m-t(type='submit', ng-click='saveItem()', ng-disabled='item_form.$invalid') Create
 
-                input(type='submit',value='PIZDANYT',ng-click='saveItem()')
 
             //- div.actions.m-t
             //-   button.btn.btn-white.btn-sm.btn-prev(type='button', disabled='disabled') Prev

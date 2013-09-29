@@ -27,4 +27,8 @@ angular.module('frontendApp')
         });
       });
 
+      $scope.dirtyAndInvalid = function(o) {
+        return o.$dirty && o.$invalid;
+      };
+
     }]);

@@ -1,3 +1,36 @@
-p All my wishes, blyad
-ul(ng-repeat='wish in wishes')
-  li {{ wish.title }}
+section.vbox
+  header.header.bg-light.dker
+    p List of wishes
+
+  section.scrollable.wrapper
+
+    div.row
+      div.col-lg-10
+        div.panel
+          header.panel-heading
+            h3.m-t-none Your wishes
+
+          div.table-responsive
+            table.table.table-striped.b-t.text-sm.m-b-none
+              thead
+                tr
+                  th Title
+                  th.th-sortable Price
+                    span.th-sort
+                      i.icon-sort
+                  th.th-sortable Date
+                  th(width='40')
+              tbody
+                tr.text-lg(ng-repeat='wish in wishes')
+                  td {{ wish.title }}
+                  td {{ wish.price }}
+                  td {{ wish.date }}
+                  td
+                    div.btn-group
+                      a(href='').dropdown-toggle
+                        i.icon-pencil
+                      ul.dropdown-menu.pull-right.text-right
+                        li
+                          a(href='') remove
+                        li
+                          a(href='') edit

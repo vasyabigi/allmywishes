@@ -3348,3 +3348,21 @@ html.layout-box .vbox>section, html.layout-box .vbox>footer {
     margin-top:50px;
     margin-bottom:50px;
 }
+
+.has-error {
+  ::-webkit-input-placeholder {
+   color: #b94a48;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+     color: #b94a48;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: #b94a48;
+  }
+
+  :-ms-input-placeholder {
+     color: #b94a48;
+  }
+}

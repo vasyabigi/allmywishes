@@ -17,7 +17,7 @@ angular.module('frontendApp')
       },
       {
         text: 'My wishes',
-        icon: 'icon-beaker',
+        icon: 'icon-tasks',
         href: '/wishes'
       }
     ];
