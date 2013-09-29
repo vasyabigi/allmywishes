@@ -10,4 +10,14 @@ angular.module('frontendApp')
       console.log(reason);
     });
 
+    $scope.edit = function() {
+      console.log('editing');
+    };
+
+    $scope.remove = function(index, wish) {
+      wish.remove().then(function() {
+        $scope.wishes.splice(index, 1);
+      });
+    };
+
   }]);

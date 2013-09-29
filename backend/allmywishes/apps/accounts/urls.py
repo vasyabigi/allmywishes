@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from wish.views import wish_list_create
+from wish import views as wish_views
 
 urlpatterns = patterns(
     'accounts.views',
@@ -11,5 +11,6 @@ urlpatterns = patterns(
     url(r'^logout$', 'account_logout', name='account-logout'),
 
     # Wishes
-    url(r'^(?P<slug>[\w-]+)/wishes$', wish_list_create, name='wish-list-create'),
+    url(r'^(?P<slug>[\w-]+)/wishes$', wish_views.wish_list_create, name='wish-list-create'),
+    url(r'^(?P<slug>[\w-]+)/wishes/(?P<pk>\d+)$', wish_views.wish_retrieve_update_destroy, name='wish-retrieve-update-destroy'),
 )

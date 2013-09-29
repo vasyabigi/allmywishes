@@ -2,9 +2,10 @@ from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from wish.utils import ParseWishItem, EmbedlyParser
+from wish.utils import EmbedlyParser
 from .models import Wish
 from .serializers import WishSerializer
+from .permissions import IsWishOwnerPermission
 from accounts.models import Account
 
 
@@ -30,6 +31,15 @@ class WishListCreate(generics.ListCreateAPIView):
 wish_list_create = WishListCreate.as_view()
 
 
+class WishRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    model = Wish
+    queryset = Wish.objects.all()
+    serializer_class = WishSerializer
+    permission_classes = (IsWishOwnerPermission,)
+
+wish_retrieve_update_destroy = WishRetrieveUpdateDestroy.as_view()
+
+
 class WishParse(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -43,4 +53,4 @@ class WishParse(APIView):
             return Response(parser.item_data)
         return Response(parser.errors(), status=404)
 
-get_wish_data = WishParse.as_view()
+wish_parse = WishParse.as_view()

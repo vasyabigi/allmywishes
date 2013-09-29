@@ -1,3 +1,7 @@
 p All my wishes, blyad
 ul(ng-repeat='wish in wishes')
   li {{ wish.title }}
+    br
+    button.btn(ng-click='edit()') Edit
+    br
+    button.btn(ng-click='remove($index, wish)') Remove
