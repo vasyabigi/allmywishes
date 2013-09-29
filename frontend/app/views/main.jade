@@ -1,6 +1,8 @@
 section.vbox
   header.header.bg-light.dker
     p Welcome to our DjangoDash-2013 app
+    div
+      p How often have you wondered what to give to a friend for his birthday? We tried to solve this problem globally, not for a specific seller. Create your wishes, Discover friends wishes!
 
   section.scrollable.wrapper
     div.row
@@ -15,17 +17,9 @@ section.vbox
                 tr
                   th Title
                   th.th-sortable Created
-                  th(width='40') Action
+                  th Owner
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td {{ wish.title }}
                   td {{ wish.created | moment }}
-                  td
-                    div.btn-group
-                      a(href='').dropdown-toggle
-                        i.icon-pencil
-                      ul.dropdown-menu.pull-right.text-right
-                        li
-                          a(href='', ng-click='remove($index, wish)') Remove
-                        li
-                          a(href='', ng-click='edit()') Edit
+                  td {{ wish.account.name }}

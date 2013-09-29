@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django_extensions.db.fields import AutoSlugField
 
 from model_utils.models import TimeStampedModel
 
@@ -11,6 +12,7 @@ class Wish(TimeStampedModel, models.Model):
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="wishes/", blank=True, null=True)
+    slug = AutoSlugField(populate_from="title", separator="")
 
     class Meta:
         app_label = 'wish'

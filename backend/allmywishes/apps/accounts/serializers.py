@@ -11,3 +11,12 @@ class AccountInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('id', 'name', 'email', 'is_authenticated', 'oauth_token', 'image', 'slug')
+
+
+class AccountPublicSerializer(serializers.ModelSerializer):
+    facebook_id = serializers.Field(source="facebook_id")
+    image = serializers.Field(source="get_avatar_url")
+
+    class Meta:
+        model = Account
+        fields = ('name', 'image', 'slug')

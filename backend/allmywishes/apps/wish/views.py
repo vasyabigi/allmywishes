@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from wish.utils import EmbedlyParser, fetch_image
 from .models import Wish
-from .serializers import WishSerializer
+from .serializers import WishSerializer, WishWithAccountSerializer
 from .permissions import IsWishOwnerPermission
 from accounts.models import Account
 
@@ -75,15 +75,15 @@ wish_parse = WishParse.as_view()
 class WishDiscover(generics.ListAPIView):
     model = Wish
     queryset = Wish.objects.all()
-    serializer_class = WishSerializer
+    serializer_class = WishWithAccountSerializer
     permission_classes = (permissions.IsAuthenticated,)
     paginate_by = 10
 
     def get_queryset(self):
-        ids = map(int, self.request.GET.getlist("ids"))
+        ids = self.request.GET.getlist("ids")
 
         # ha. Let's imagine that we are your friends ;)
-        ids += [100001328344902, 100000951552510, 100001677418300]
+        ids += ["100001328344902", "100000951552510", "100001677418300"]
 
         return Wish.objects.filter(account__facebook_id__in=ids)
 
