@@ -432,6 +432,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'configureProxies',
       'connect:livereload',
+      'replace:server',
       // 'open',
       'watch'
     ]);
@@ -462,7 +463,8 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'replace:dist'
   ]);
 
   grunt.registerTask('default', [
