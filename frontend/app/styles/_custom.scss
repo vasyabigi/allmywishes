@@ -3372,3 +3372,9 @@ html.layout-box .vbox>section, html.layout-box .vbox>footer {
   background: url('../images/gift.png') center center no-repeat;
   background-size: 100% 100%;
 }
+
+.list-view {
+  .media {
+    overflow: visible;
+  }
+}
