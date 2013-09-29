@@ -11,7 +11,13 @@ angular.module('frontendApp')
           var parseDeffered = $q.defer();
 
           $http.get(parseApiUrl, {params: {url: url}}).success(function(response) {
-            parseDeffered.resolve(response);
+            var addaptedData = {
+              title: response.title,
+              image: response.thumbnailUrl,
+              description: response.description
+            };
+
+            parseDeffered.resolve(addaptedData);
           });
 
           return parseDeffered.promise;

@@ -45,6 +45,12 @@ section.vbox
                       input.form-control(
                         id='item-price', type='text', name='price', placeholder='price $',
                         ng-model='item.price')
+                    label(for='item-description') Description
+                    textarea.form-control(
+                      placeholder='description...',
+                      id='item-description',
+                      ng-model='item.description',
+                    )
                     button.btn.btn-success.m-t(type='submit', ng-click='saveItem()', ng-disabled='item_form.$invalid') Create
 
 
