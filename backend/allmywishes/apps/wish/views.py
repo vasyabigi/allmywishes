@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from wish.utils import EmbedlyParser, fetch_image
 from .models import Wish
-from .serializers import WishSerializer
+from .serializers import WishSerializer, WishWithAccountSerializer
 from .permissions import IsWishOwnerPermission
 from accounts.models import Account
 
@@ -75,7 +75,7 @@ wish_parse = WishParse.as_view()
 class WishDiscover(generics.ListAPIView):
     model = Wish
     queryset = Wish.objects.all()
-    serializer_class = WishSerializer
+    serializer_class = WishWithAccountSerializer
     permission_classes = (permissions.IsAuthenticated,)
     paginate_by = 10
 
