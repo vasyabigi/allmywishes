@@ -4,41 +4,26 @@ from django.core.exceptions import ImproperlyConfigured
 from .common import *
 
 
-# If use more that 1 project on server specify project prefix here
-PROJECT_PREFIX = ""
-
-
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
     try:
-        return os.environ["%s%s" % (PROJECT_PREFIX, var_name)]
+        return os.environ[var_name]
     except KeyError:
         error_msg = "Set the %s env variable" % var_name
         raise ImproperlyConfigured(error_msg)
 
-"""
-# Production allmywishes settings:
-export DATABASE_ENGINE=""
-export DATABASE_NAME=""
-export DATABASE_USER=""
-export DATABASE_PASSWORD=""
-export DATABASE_HOST=""
-export DATABASE_PORT=""
-"""
+
 DATABASES = {
     'default': {
-        'ENGINE': "django.db.backends.%s" % get_env_variable("DATABASE_ENGINE"),
-        'NAME': get_env_variable("DATABASE_NAME"),
-        'USER': get_env_variable("DATABASE_USER"),
-        'PASSWORD': get_env_variable("DATABASE_PASSWORD"),
-        'HOST': get_env_variable("DATABASE_HOST"),
-        'PORT': get_env_variable("DATABASE_PORT"),
+        'ENGINE': "django.db.backends.postgresql_psycopg2",
+        'NAME': get_env_variable("ALLMYWISHES_DATABASE_NAME"),
+        'USER': get_env_variable("ALLMYWISHES_DATABASE_USER"),
+        'PASSWORD': get_env_variable("ALLMYWISHES_DATABASE_PASSWORD"),
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-# export SECRET_KEY=""
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = get_env_variable("ALLMYWISHES_SECRET_KEY")
 
-ADMINS = (
-    # ('', ''),
-)
+EMBEDLY_API_KEY = get_env_variable("ALLMYWISHES_EMBEDLY_API_KEY")
