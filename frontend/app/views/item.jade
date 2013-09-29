@@ -42,13 +42,14 @@ section.vbox
                     span.help-block.m-b-none(ng-if='dirtyAndInvalid(item_form.title)') Title is required
 
                   div.col-lg-6.img-full.text-center
-                    img.m-t(ng-src="{{ item.image || '/images/gift.png' }}", ng-class="{'empty-img': !item.image}")
+                    img.m-t(ng-src="{{ imageSrc || '/images/gift.png' }}", ng-class="{'empty-img': !item.image}")
+
                   div.col-lg-6
                     label.control-label(for='item-image') Paste image link:
                     input.form-control(
                       type='text',
                       placeholder='image url',
-                      ng-model='itemImgUrl',
+                      ng-model='item.image',
                       id='image'
                     )
                     div.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.price)}')

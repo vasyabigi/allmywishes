@@ -31,11 +31,11 @@ angular.module('frontendApp')
 
       $scope.itemImgUrl = '';
 
-      $scope.$watch('itemImgUrl', function(newVal) {
+      $scope.$watch('item.image', function(newVal) {
         var validPromise = $validImg.valid(newVal);
 
         validPromise.then(function(valid) {
-          $scope.item.image = valid ? newVal : false;
+          $scope.imageSrc = valid ? newVal : false;
         });
       });
 
