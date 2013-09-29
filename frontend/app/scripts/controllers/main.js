@@ -4,7 +4,7 @@ angular.module('frontendApp')
   .controller('MainCtrl', ['$scope', '$FB', 'Restangular', '_', function ($scope, $FB, Restangular, _) {
     var wishes = Restangular.one('wishes');
 
-    console.log('HERE');
+    $scope.listView = 'list';
 
     $FB.api('/me/friends?fields=installed', function (response) {
 
