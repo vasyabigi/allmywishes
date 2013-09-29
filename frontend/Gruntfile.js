@@ -293,6 +293,50 @@ module.exports = function (grunt) {
         }]
       }
     },
+    replace: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            'scripts/{,*/}*.js',
+            '{,*/}*.html'
+          ]
+        }],
+        options: {
+          patterns: [
+            {
+              match: 'facebook_id',
+              replacement: '1377588425812154'
+            }
+          ]
+        }
+      },
+
+      server: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '.tmp',
+          src: [
+            'scripts/{,*/}*.js',
+            '{,*/}*.html'
+          ]
+        }],
+        options: {
+          patterns: [
+            {
+              match: 'facebook_id',
+              replacement: '107790869310294'
+            }
+          ]
+        }
+      }
+
+    },
     // Put files not handled in other tasks here
     copy: {
       dist: {

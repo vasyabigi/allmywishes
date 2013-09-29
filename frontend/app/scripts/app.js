@@ -11,7 +11,7 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
     }
 
     $FBProvider.setInitParams({
-      appId: '107790869310294'
+      appId: '@@facebook_id'
     });
 
     $routeProvider
