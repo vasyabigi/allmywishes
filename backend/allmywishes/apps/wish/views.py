@@ -14,6 +14,11 @@ class WishListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         account = Account.objects.get(slug=self.request.GET.get("slug")) if self.request.GET.get("slug") else self.request.user
-        return self.queryset.filter(wishes__account=account).all()
+        return self.queryset.filter(account=account).all()
+
+    def pre_save(self, obj):
+        if self.request.user.is_authenticated():
+            obj.account = self.request.user
+
 
 wish_list_create = WishListCreate.as_view()

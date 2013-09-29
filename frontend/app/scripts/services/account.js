@@ -4,9 +4,9 @@ angular.module('frontendApp')
   .factory('$account', ['$http', '$route', '$rootScope', '$q', '$FB',
     function ($http, $route, $rootScope, $q, $FB) {
 
-    var accountInfoUrl = '/api/accounts/info/',
-        connectUrl = '/api/accounts/connect/',
-        logoutUrl = '/api/accounts/logout/',
+    var accountInfoUrl = '/api/accounts/info',
+        connectUrl = '/api/accounts/connect',
+        logoutUrl = '/api/accounts/logout',
         loginStatusDeferred = $q.defer();
 
     $rootScope.account = { 'isAuthenticated': false };

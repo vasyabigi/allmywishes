@@ -30,8 +30,9 @@ section.vbox
                 p Title:
                 input.form-control(type='text', placeholder='title', ng-model='item.title')
                 p Price:
-                input.form-control(type='text', placeholder='title', ng-model='item.price')
+                input.form-control(type='text', placeholder='price', ng-model='item.price')
 
+                input(type='submit',value='PIZDANYT',ng-click='saveItem()')
 
             //- div.actions.m-t
             //-   button.btn.btn-white.btn-sm.btn-prev(type='button', disabled='disabled') Prev
@@ -41,9 +42,5 @@ section.vbox
         div.dropdown
           a.dropdown-toggle Click me for a dropdown, yo!
           ul.dropdown-menu
-            li(ng-repeat="choice in testItems")
+            li(ng-repeat='choice in testItems')
               a {{ choice }}
-
-
-
-

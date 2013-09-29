@@ -12,6 +12,7 @@ urlpatterns = patterns(
     url(r'^$', home, name="home"),
 
     url(r'^api/accounts/', include('accounts.urls')),
+    url(r'^api/wishes/', include('wish.urls')),
 )
 
 
