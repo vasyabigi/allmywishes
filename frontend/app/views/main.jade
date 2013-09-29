@@ -60,7 +60,7 @@ section.vbox
 
               div.media-body
                 a.h4(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
-                small.block.m-t-xs Owner -
+                small.block.m-t-xs Owner:
                   a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
                 em.text-xs Created
                   span.text-danger.m-l-sm {{ wish.created | date:'medium' }}
