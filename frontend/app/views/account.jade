@@ -1,1 +1,21 @@
-p This is the account view
+section.vbox
+  header.header.bg-light.dker
+    p Welcome to our app
+
+  section.scrollable.wrapper
+    p {{ currentAccount.name }}
+    p
+      img(ng-src="{{ currentAccount.image }}")
+    div.row
+      div.col-lg-8
+        section.panel
+          table.table.table-striped.b-t.text-sm.m-b-none
+            thead
+              tr
+                th Title
+                th.th-sortable Created
+            tbody
+              tr.text-lg(ng-repeat='wish in currentAccount.wishes')
+                td
+                  a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.slug }}") {{ wish.title }}
+                td {{ wish.created | moment }}

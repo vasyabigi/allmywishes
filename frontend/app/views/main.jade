@@ -16,10 +16,12 @@ section.vbox
               thead
                 tr
                   th Title
-                  th.th-sortable Created
                   th Owner
+                  th.th-sortable Created
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
-                  td {{ wish.title }}
+                  td
+                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.slug }}") {{ wish.title }}
+                  td
+                    a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
                   td {{ wish.created | moment }}
-                  td {{ wish.account.name }}

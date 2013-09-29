@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from django.template.defaultfilters import slugify
+from unidecode import unidecode
 from south.db import db
 from south.v2 import DataMigration
 from django.db import models
@@ -14,7 +15,7 @@ class Migration(DataMigration):
         # and orm['appname.ModelName'] for models in other applications.
         wishes = orm.Wish.objects.all()
         for w in wishes:
-            w.slug = slugify(w.title[:99])
+            w.slug = slugify(unidecode(w.title[:50]))
             w.save()
 
     def backwards(self, orm):

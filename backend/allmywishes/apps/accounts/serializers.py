@@ -20,3 +20,17 @@ class AccountPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('name', 'image', 'slug')
+
+
+class AccountDetailSerializer(serializers.ModelSerializer):
+    facebook_id = serializers.Field(source="facebook_id")
+    image = serializers.Field(source="get_avatar_url")
+    wishes = serializers.SerializerMethodField('get_wishes')
+
+    class Meta:
+        model = Account
+        fields = ('name', 'image', 'slug', 'wishes')
+
+    def get_wishes(self, obj):
+        from wish.serializers import WishSerializer
+        return WishSerializer(obj.wishes.all(), many=True).data

@@ -22,5 +22,5 @@ angular.module('frontendApp')
 
           return parseDeffered.promise;
         }
-      }
+      };
     }]);
