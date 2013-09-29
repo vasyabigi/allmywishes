@@ -27,3 +27,6 @@ DATABASES = {
 SECRET_KEY = get_env_variable("ALLMYWISHES_SECRET_KEY")
 
 EMBEDLY_API_KEY = get_env_variable("ALLMYWISHES_EMBEDLY_API_KEY")
+
+
+ALLOWED_HOSTS = ['allmywish.es']
