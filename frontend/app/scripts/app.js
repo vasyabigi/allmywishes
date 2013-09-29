@@ -31,6 +31,10 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
         templateUrl: 'views/wishes.html',
         controller: 'WishesCtrl'
       })
+      .when('/wishes/:id', {
+        templateUrl: 'views/wishDetails.html',
+        controller: 'WishdetailsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
