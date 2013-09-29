@@ -50,7 +50,7 @@ class WishParse(APIView):
         url = request.GET.get("url")
         parser = EmbedlyParser(url)
         if parser.is_valid():
-            return Response(parser.item_data)
+            return Response(parser.prepared_data)
         return Response(parser.errors(), status=404)
 
 wish_parse = WishParse.as_view()
