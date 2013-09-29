@@ -61,8 +61,6 @@ class WishRetrieve(generics.RetrieveAPIView):
 wish_retrieve = WishRetrieve.as_view()
 
 
-
-
 class WishParse(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
