@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from rest_framework.generics import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -43,6 +44,16 @@ class WishRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Wish.objects.all()
     serializer_class = WishSerializer
     permission_classes = (IsWishOwnerPermission,)
+
+    def get_queryset(self):
+        user = self.request.user
+        user_slug = self.kwargs.get("slug")
+        if user_slug is None:
+            return user.wishes.all()
+        else:
+            user_dst = get_object_or_404(Account, slug=user_slug)
+            return user_dst.wishes.all()
+
 
 wish_retrieve_update_destroy = WishRetrieveUpdateDestroy.as_view()
 
