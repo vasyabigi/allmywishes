@@ -28,5 +28,12 @@ SECRET_KEY = get_env_variable("ALLMYWISHES_SECRET_KEY")
 
 EMBEDLY_API_KEY = get_env_variable("ALLMYWISHES_EMBEDLY_API_KEY")
 
+RAVEN_CONFIG = {
+    'dsn': 'http://2835370261294552a47644f67493a884:562d44e635af4ff5aee0cda093437277@sentry.vasyabigi.com/4',
+}
+
+INSTALLED_APPS += (
+    'raven.contrib.django.raven_compat',
+)
 
 ALLOWED_HOSTS = ['allmywish.es']

@@ -6,8 +6,8 @@ angular.module('frontendApp')
 
     account.getList('wishes').then(function(response) {
       $scope.wishes = response;
-    }, function(reason) {
-      console.log(reason);
+    }, function() {
+      console.log('error');
     });
 
     $scope.edit = function() {
