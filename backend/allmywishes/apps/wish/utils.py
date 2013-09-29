@@ -7,6 +7,7 @@ import requests
 
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.template.defaultfilters import truncatechars
 
 from embedly import Embedly
 
@@ -94,7 +95,7 @@ class EmbedlyParser(object):
 
     def prepared_data(self):
         return {
-            "title": self.obj["title"],
+            "title": truncatechars(self.obj["title"], 100),
             "description": self.obj["title"],
             "provider_name": self.obj["provider_name"],
             "image_src": self.get_main_image_src()
