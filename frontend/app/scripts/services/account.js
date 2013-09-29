@@ -15,7 +15,7 @@ angular.module('frontendApp')
       $rootScope.account = response;
       loginStatusDeferred.resolve($rootScope.account);
     }).error(function(reason) {
-      console.log('Status error', reason);
+      console.log('Status error');
       loginStatusDeferred.resolve(reason);
     });
 

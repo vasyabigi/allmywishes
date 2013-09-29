@@ -15,17 +15,9 @@ section.vbox
                 tr
                   th Title
                   th.th-sortable Created
-                  th(width='40') Action
+                  th Owner
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td {{ wish.title }}
                   td {{ wish.created | moment }}
-                  td
-                    div.btn-group
-                      a(href='').dropdown-toggle
-                        i.icon-pencil
-                      ul.dropdown-menu.pull-right.text-right
-                        li
-                          a(href='', ng-click='remove($index, wish)') Remove
-                        li
-                          a(href='', ng-click='edit()') Edit
+                  td {{ wish.account.name }}
