@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('ItemCtrl', [
-    '$scope', '$rootScope', '$timeout',
-    'Restangular', '$validImg', '$wish',
-    function ($scope, $rootScope, $timeout,
-        Restangular, $validImg, $wish) {
+  .controller('ItemCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', '$validImg', '$wish',
+    function ($scope, $rootScope, $timeout, Restangular, $validImg, $wish) {
 
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
