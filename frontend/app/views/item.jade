@@ -16,14 +16,17 @@ section.vbox
                 span Step 2
 
           div.step-content
-            form(name='item_form')
-              div.step-pane.active
+            div.step-pane.active
+              form
                 h2 Step 1
                 label(for='website') Paste your link here:
-                input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
-                input(type='submit',value='Process url',ng-click='processUrl(websiteUrl)')
+                div.input-group
+                  input.form-control(type='text', ng-model="websiteUrl", placeholder='website', id='website')
+                  span.input-group-btn
+                    button.btn.btn-primary(type='submit' ,ng-click='processUrl(websiteUrl)') Process url
 
-              div.step-pane.active.m-t-lg
+            div.step-pane.active.m-t-lg
+              form(name='item_form')
                 h2  Step 2
                 div.row
                   div.col-lg-12.m-b.form-group(ng-class='{"has-error": dirtyAndInvalid(item_form.title)}')
