@@ -27,8 +27,6 @@ class WishListCreate(generics.ListCreateAPIView):
 
     def pre_save(self, obj):
         if self.request.user.is_authenticated():
-            #print self.get_serializer().__dict__
-            #import ipdb; ipdb.set_trace()
             obj.account = self.request.user
             image_src = self.request.DATA.get("image")
             if image_src is not None:
@@ -45,17 +43,24 @@ class WishRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WishSerializer
     permission_classes = (IsWishOwnerPermission,)
 
+wish_retrieve_update_destroy = WishRetrieveUpdateDestroy.as_view()
+
+
+class WishRetrieve(generics.RetrieveAPIView):
+    model = Wish
+    queryset = Wish.objects.all()
+    serializer_class = WishSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
     def get_queryset(self):
         user = self.request.user
         user_slug = self.kwargs.get("slug")
-        if user_slug is None:
-            return user.wishes.all()
-        else:
-            user_dst = get_object_or_404(Account, slug=user_slug)
-            return user_dst.wishes.all()
+        user_dst = get_object_or_404(Account, slug=user_slug)
+        return user_dst.wishes.all()
+
+wish_retrieve = WishRetrieve.as_view()
 
 
-wish_retrieve_update_destroy = WishRetrieveUpdateDestroy.as_view()
 
 
 class WishParse(APIView):
