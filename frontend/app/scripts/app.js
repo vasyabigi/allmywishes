@@ -31,6 +31,10 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      .when('/mine/:wishSlug', {
+        templateUrl: 'views/myWishDetails.html',
+        controller: 'MyWishDetailsCtrl'
+      })
       .when('/:slug/wishes/:wishSlug', {
         templateUrl: 'views/wishDetails.html',
         controller: 'WishDetailsCtrl'

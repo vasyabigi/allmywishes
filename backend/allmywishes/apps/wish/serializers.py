@@ -19,10 +19,14 @@ class WishMixin(object):
 
 class WishSerializer(WishMixin, serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField('get_image_url')
+    url = serializers.SerializerMethodField('get_wish_url')
 
     class Meta:
         model = Wish
-        fields = ('id', 'title', 'description', 'created', 'image_url')
+        fields = ('id', 'title', 'description', 'created', 'image_url', 'url')
+
+    def get_wish_url(self, obj):
+        return reverse('wish-retrieve-update-destroy', kwargs={'pk': obj.pk})
 
 
 class WishWithAccountSerializer(WishMixin, serializers.ModelSerializer):
