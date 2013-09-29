@@ -15,7 +15,7 @@ class Wish(TimeStampedModel, models.Model):
 
     class Meta:
         app_label = 'wish'
-        get_latest_by = "created"
+        get_latest_by = 'created'
         ordering = ['-created']
 
     def __unicode__(self):

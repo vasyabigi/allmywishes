@@ -6,4 +6,4 @@ from rest_framework import serializers
 class WishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wish
-        fields = ('id', 'title', 'description', 'image')
+        fields = ('id', 'title', 'description', 'price', 'image')
