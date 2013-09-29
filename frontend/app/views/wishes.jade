@@ -20,7 +20,7 @@ section.vbox
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td {{ wish.title }}
-                  td {{ wish.created | date:'medium' }}
+                  td {{ wish.created | moment }}
                   td
                     div.btn-group
                       a(href='').dropdown-toggle
