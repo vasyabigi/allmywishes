@@ -15,15 +15,11 @@ section.vbox
               thead
                 tr
                   th Title
-                  th.th-sortable Price
-                    span.th-sort
-                      i.icon-sort
-                  th.th-sortable Date
-                  th(width='40')
+                  th.th-sortable Created
+                  th(width='40') Action
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td {{ wish.title }}
-                  td {{ wish.price }}
                   td {{ wish.created | date:'medium' }}
                   td
                     div.btn-group

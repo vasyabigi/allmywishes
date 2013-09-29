@@ -10,8 +10,7 @@ angular.module('frontendApp')
       $scope.imageSrc = '';
       $scope.item = {
         // image: '',
-        // title: '',
-        // price: ''
+        // title: ''
       };
 
       $scope.saveItem = function() {
