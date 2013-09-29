@@ -5,5 +5,16 @@ section.vbox
   section.scrollable.wrapper
     div.row
       div.col-lg-10
-        div.panel
-          p {{ wish }}
+        div.blog-post
+          div.post-item
+            div.post-media
+              a
+                img.img-full(ng-src='{{ wish.imageUrl }}')
+            div.caption.wrapper-lg
+              h2.post-title {{ wish.title }}
+              div.post-sum
+                p {{ wish.description }}
+              div.line.line-lg
+              div.text-muted
+                i.icon-time.icon-muted
+                | {{ wish.created | date:'medium' }}

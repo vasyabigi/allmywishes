@@ -3,9 +3,12 @@ section.vbox
     p Welcome to our app
 
   section.scrollable.wrapper
-    p {{ currentAccount.name }}
-    p
-      img(ng-src="{{ currentAccount.image }}")
+    div.clearfix.m-b
+      a.pull-left.thumb.m-r
+        img.img-circle(ng-src="{{ currentAccount.image }}")
+      div.clear
+        div.h3.m-t-xs.m-b-xs {{ currentAccount.name }}
+
     div.row
       div.col-lg-8
         section.panel
