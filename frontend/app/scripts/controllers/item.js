@@ -10,6 +10,7 @@ angular.module('frontendApp')
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
       $scope.secondStep = false;
+      $scope.imageSrc = '';
       $scope.item = {
         // image: '',
         // title: '',
@@ -29,14 +30,14 @@ angular.module('frontendApp')
         });
       };
 
-      $scope.itemImgUrl = '';
-
       $scope.$watch('item.image', function(newVal) {
-        var validPromise = $validImg.valid(newVal);
+        if (newVal !== undefined) {
+          var validPromise = $validImg.valid(newVal);
 
-        validPromise.then(function(valid) {
-          $scope.imageSrc = valid ? newVal : false;
-        });
+          validPromise.then(function(valid) {
+            $scope.imageSrc = valid ? newVal : false;
+          });
+        }
       });
 
       $scope.dirtyAndInvalid = function(o) {

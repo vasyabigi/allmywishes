@@ -8,10 +8,10 @@ section.vbox
         section.panel
           div#form-wizard.wizard.clearfix
             ul.steps
-              li(ng-class='{active: !secondStep}', ng-click="secondStep = false")
-                span.badge.badge-info 1
+              li(ng-class='secondStep ? "complete" : "active"', ng-click="secondStep = false")
+                span.badge(ng-class='secondStep ? "badge-success" : badge-info') 1
                 span Step 1
-              li(ng-class='{active: secondStep}')
+              li(ng-class='{active: secondStep}', ng-click="secondStep = true")
                 span.badge.badge-info 2
                 span Step 2
 
