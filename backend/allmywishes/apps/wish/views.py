@@ -13,8 +13,12 @@ class WishListCreate(generics.ListCreateAPIView):
     paginate_by = 10
 
     def get_queryset(self):
-        account = Account.objects.get(slug=self.request.GET.get("slug")) if self.request.GET.get("slug") else self.request.user
-        return self.queryset.filter(account=account).all()
+        try:
+            account = Account.objects.get(slug=self.kwargs.get("slug"))
+        except Account.DoesNotExist:
+            return []
+        else:
+            return self.queryset.filter(account=account).all()
 
     def pre_save(self, obj):
         if self.request.user.is_authenticated():
