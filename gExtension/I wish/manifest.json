@@ -1,0 +1,16 @@
+{
+  "name": "Allmywishes",
+  "version": "0.1",
+  "permissions": ["activeTab", "cookies", "tabs", "http://*/*", "https://*/*", "http://allmywish.es/", "https://code.jquery.com/" ],
+  "icons": { "16": "iw-16.png", "48": "iw-48.png", "128": "iw-128.png" },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "iw-48.png",
+    "default_title": "I Want this!",
+    "default_popup": "main.html"
+  },
+  "manifest_version": 2
+}
