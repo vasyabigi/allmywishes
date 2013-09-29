@@ -77,3 +77,20 @@ class WishParse(APIView):
         return Response(parser.errors(), status=404)
 
 wish_parse = WishParse.as_view()
+
+
+class WishDiscover(generics.ListAPIView):
+    model = Wish
+    queryset = Wish.objects.all()
+    serializer_class = WishSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        ids = self.request.GET.getlist("ids")
+        friends_wishes = Wish.objects.filter(account__facebook_id__in=ids)
+        if friends_wishes.exists():
+            return friends_wishes
+        account = self.request.user
+        return Wish.objects.exclude(account=account).order_by("?")[:20]
+
+wish_discover = WishDiscover.as_view()

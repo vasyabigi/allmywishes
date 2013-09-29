@@ -9,6 +9,6 @@ urlpatterns = format_suffix_patterns(patterns(
     'wish.views',
 
     url(r'^parse$', 'wish_parse', name='wish-parse'),
-
     url(r'^(?P<pk>\d+)$', wish_views.wish_retrieve_update_destroy, name='wish-retrieve-update-destroy'),
+    url(r'^discover$', wish_views.wish_discover, name='wish-discover'),
 ))
