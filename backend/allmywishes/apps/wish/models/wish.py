@@ -11,11 +11,11 @@ class Wish(TimeStampedModel, models.Model):
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField(blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
-    image = models.ImageField(upload_to="/wishes/", blank=True, null=True)
+    image = models.ImageField(upload_to="wishes/", blank=True, null=True)
 
     class Meta:
         app_label = 'wish'
-        get_latest_by = "created"
+        get_latest_by = 'created'
         ordering = ['-created']
 
     def __unicode__(self):

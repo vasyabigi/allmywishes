@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('ItemCtrl', ['$scope', '$rootScope', '$timeout', 'Restangular', '$validImg',
-    function ($scope, $rootScope, $timeout, Restangular, $validImg) {
+  .controller('ItemCtrl', [
+      '$scope', '$rootScope', '$timeout',
+      'Restangular', '$validImg', '$wish',
+    function ($scope, $rootScope, $timeout,
+        Restangular, $validImg, $wish) {
 
       var account = Restangular.one('accounts', $rootScope.account.slug);
 
@@ -15,6 +18,14 @@ angular.module('frontendApp')
       $scope.saveItem = function() {
         account.post('wishes', $scope.item);
         $scope.item = {};
+      };
+
+      $scope.processUrl = function(url){
+        var promise = $wish.parse(url);
+
+        promise.then(function(response) {
+          $scope.item = response;
+        });
       };
 
       $scope.itemImgUrl = '';

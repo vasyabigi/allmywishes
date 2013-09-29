@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('AsideCtrl', ['$scope', '$rootScope', '$account', '$location', '_', function ($scope, $rootScope, $account, $location, _) {
+  .controller('AsideCtrl', ['$scope', '$rootScope', '$account', '$location', '_',
+    function ($scope, $rootScope, $account, $location, _) {
+
     $scope.navVert = false;
 
     $scope.panes = [
