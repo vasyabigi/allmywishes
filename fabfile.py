@@ -9,14 +9,14 @@ env.user = 'rambo'
 env.db = 'allmywishes'
 env.dbuser = 'pedro'
 # Paths
-env.project_dir = '/home/rambo/projects/allmywishes/backend'
-env.frontend_dir = '/home/rambo/projects/allmywishes/frontend'
+env.project_dir = '/home/rambo/projects/dev_allmywishes/backend'
+env.frontend_dir = '/home/rambo/projects/dev_allmywishes/frontend'
 
 
 @task(alias="pull")
 def git_pull():
     with cd(env.project_dir):
-        run('git pull origin master')
+        run('git pull origin dev:dev')
 
 
 @task(alias="pip")

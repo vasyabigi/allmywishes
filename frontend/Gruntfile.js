@@ -335,7 +335,7 @@ module.exports = function (grunt) {
           patterns: [
             {
               match: 'facebook_id',
-              replacement: '107790869310294'
+              replacement: '432456450192795'
             }
           ]
         }
