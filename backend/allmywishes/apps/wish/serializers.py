@@ -4,17 +4,18 @@ from .models import Wish
 from accounts.serializers import AccountPublicSerializer
 
 from rest_framework import serializers
+from sorl.thumbnail import get_thumbnail
+from sorl.thumbnail.helpers import ThumbnailError
 
 
 class WishMixin(object):
     def get_image_url(self, obj):
-        if obj is not None and obj.image is not None:
-            try:
-                return obj.image.url
-            except ValueError:
-                pass
-
-        return None
+        try:
+            image = get_thumbnail(obj.image, '400', quality=80)
+        except ThumbnailError:
+            return
+        else:
+            return image.url
 
 
 class WishSerializer(WishMixin, serializers.ModelSerializer):

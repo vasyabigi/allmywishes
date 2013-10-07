@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     # Plugins:
     'south',
     'rest_framework',
+    'sorl.thumbnail',
 
     # Apps:
     'core',
