@@ -20,3 +20,5 @@ section.vbox
                 | {{ wish.created | date:'medium' }}
                 i.icon-user.icon-muted.m-l
                 | by {{ wish.parentResource.id }}
+          div(ezfb-xfbml="true")
+            div.fb-comments(data-href="{{ pageUrl }}", data-width="500px")
