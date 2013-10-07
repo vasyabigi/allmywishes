@@ -17,7 +17,7 @@ env.frontend_dir = '/home/rambo/projects/dev_allmywishes/frontend'
 @task(alias="pull")
 def git_pull():
     with cd(env.project_dir):
-        run('git pull origin master')
+        run('git pull origin dev:dev')
 
 
 @task(alias="pip")

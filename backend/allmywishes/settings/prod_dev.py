@@ -16,7 +16,7 @@ def get_env_variable(var_name):
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.postgresql_psycopg2",
-        'NAME': get_env_variable("ALLMYWISHES_DATABASE_NAME"),
+        'NAME': get_env_variable("ALLMYWISHES_DATABASE_NAME_DEV"),
         'USER': get_env_variable("ALLMYWISHES_DATABASE_USER"),
         'PASSWORD': get_env_variable("ALLMYWISHES_DATABASE_PASSWORD"),
         'HOST': 'localhost',
