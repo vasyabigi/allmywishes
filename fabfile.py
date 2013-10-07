@@ -3,6 +3,7 @@ from fabric.api import env, run, cd, settings, prefix, task, sudo
 
 # Server
 env.stage = 'prod'
+env.settings = 'prod_dev'
 env.hosts = ['192.241.232.177', ]
 env.user = 'rambo'
 # Db
@@ -16,7 +17,7 @@ env.frontend_dir = '/home/rambo/projects/dev_allmywishes/frontend'
 @task(alias="pull")
 def git_pull():
     with cd(env.project_dir):
-        run('git pull origin dev:dev')
+        run('git pull origin master')
 
 
 @task(alias="pip")
@@ -28,7 +29,7 @@ def pip_install():
 @task(alias="run")
 def run_command(command):
     with settings(cd(env.project_dir), prefix('workon allmywishes')):
-        run('python manage.py %s --settings="allmywishes.settings.%s"' % (command, env.stage))
+        run('python manage.py %s --settings="allmywishes.settings.%s"' % (command, env.settings))
 
 
 @task
