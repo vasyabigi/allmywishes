@@ -10,3 +10,6 @@ unidecode
 requests
 django-model-utils
 embedly
+sorl-thumbnail
+hiredis
+django-redis-cache

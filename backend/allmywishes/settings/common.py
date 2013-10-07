@@ -174,13 +174,14 @@ AUTHENTICATION_BACKENDS = (
 
 AUTH_USER_MODEL = 'accounts.Account'
 
-REDABILITY = {
-    "API_TOKEN": "dc16f836beb32cb92551b866ee683538dd2c4a4b",
-    "API_STARTPOINT": "http://www.readability.com/",
-    "API_PARSE_URL": "/api/content/v1/parser",
-}
-
-EMBEDLY = {
-    "API_KEY": "5c56637d4cd94a5281bbdb08c9ed86b4",
-    "API_URL": "https://api.embed.ly/1/oembed"
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'localhost:6379',
+        'OPTIONS': {
+            'DB': 1,
+            'PASSWORD': '',
+            'PARSER_CLASS': 'redis.connection.HiredisParser'
+        },
+    },
 }
