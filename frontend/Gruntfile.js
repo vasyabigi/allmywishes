@@ -84,6 +84,11 @@ module.exports = function (grunt) {
           context: '/api',
           host: 'localhost',
           port: 8000
+        },
+        {
+          context: '/media',
+          host: 'localhost',
+          port: 8000
         }
       ],
       livereload: {
