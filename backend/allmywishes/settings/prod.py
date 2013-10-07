@@ -37,4 +37,4 @@ INSTALLED_APPS += (
     "gunicorn",
 )
 
-ALLOWED_HOSTS = ['allmywish.es']
+ALLOWED_HOSTS = ['allmywish.es', 'dev.allmywish.es']
