@@ -29,7 +29,7 @@ section.vbox
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td
-                    a(ng-href="#/mine/{{ wish.id }}") {{ wish.title }}
+                    a(ng-href="/mine/{{ wish.id }}") {{ wish.title }}
                   td {{ wish.created | moment }}
                   td
                     div.btn-group
@@ -71,7 +71,7 @@ section.vbox
                       i.icon-trash.m-l-sm
 
               div.media-body
-                a.h4(ng-href="#/mine/{{ wish.id }}") {{ wish.title }}
+                a.h4(ng-href="/mine/{{ wish.id }}") {{ wish.title }}
                 small.block.m-t-xs {{ wish.description }}
                 em.text-xs Created
                   span.text-danger.m-l-sm {{ wish.created | date:'medium' }}

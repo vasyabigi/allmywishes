@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap'])
-  .config(['$routeProvider', '$FBProvider', 'RestangularProvider',
-    function ($routeProvider, $FBProvider, RestangularProvider) {
+  .config(function ($routeProvider, $FBProvider, $locationProvider, RestangularProvider) {
 
     if (typeof String.prototype.startsWith !== 'function') {
       String.prototype.startsWith = function (str){
@@ -14,29 +13,31 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
       appId: '@@facebook_id'
     });
 
+    $locationProvider.html5Mode(true);
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: '/views/main.html',
         controller: 'MainCtrl'
       })
       .when('/wishes/new', {
-        templateUrl: 'views/item.html',
+        templateUrl: '/views/item.html',
         controller: 'ItemCtrl'
       })
       .when('/wishes', {
-        templateUrl: 'views/wishes.html',
+        templateUrl: '/views/wishes.html',
         controller: 'WishesCtrl'
       })
       .when('/:slug', {
-        templateUrl: 'views/account.html',
+        templateUrl: '/views/account.html',
         controller: 'AccountCtrl'
       })
       .when('/mine/:wishSlug', {
-        templateUrl: 'views/myWishDetails.html',
+        templateUrl: '/views/myWishDetails.html',
         controller: 'MyWishDetailsCtrl'
       })
       .when('/:slug/wishes/:wishSlug', {
-        templateUrl: 'views/wishDetails.html',
+        templateUrl: '/views/wishDetails.html',
         controller: 'WishDetailsCtrl'
       })
       .otherwise({
@@ -62,10 +63,10 @@ angular.module('frontendApp', ['ezfb', 'ngRoute', 'restangular', 'ui.bootstrap']
       return response;
     });
 
-  }]).run(['$http', function($http) {
+  }).run(function($http) {
 
     // Django csrf token for POST
     $http.defaults.xsrfCookieName = 'csrftoken';
     $http.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-  }]);
+  });

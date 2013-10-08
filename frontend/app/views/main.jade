@@ -30,9 +30,9 @@ section.vbox
               tbody
                 tr.text-lg(ng-repeat='wish in wishes')
                   td
-                    a(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
+                    a(ng-href="/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
                   td
-                    a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
+                    a(ng-href="/{{ wish.account.slug }}") {{ wish.account.name }}
                   td {{ wish.created | moment }}
 
 
@@ -60,9 +60,9 @@ section.vbox
                 strong.h4 {{ wish.created | moment }}
 
               div.media-body
-                a.h4(ng-href="#/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
+                a.h4(ng-href="/{{ wish.account.slug }}/wishes/{{ wish.id }}") {{ wish.title }}
                 small.block.m-t-xs Owner:
-                  a(ng-href="#/{{ wish.account.slug }}") {{ wish.account.name }}
+                  a(ng-href="/{{ wish.account.slug }}") {{ wish.account.name }}
                 em.text-xs Created
                   span.text-danger.m-l-sm {{ wish.created | date:'medium' }}
             div.line.pull-in(ng-repeat-end)

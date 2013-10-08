@@ -10,10 +10,10 @@
     <meta name="description" content="social, wish, list, wishlist, all my wishes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
 
     <!-- build:css(.tmp) styles/screen.css -->
-    <link rel="stylesheet" href="styles/screen.css">
+    <link rel="stylesheet" href="/styles/screen.css">
     <!-- endbuild -->
   </head>
 
@@ -23,8 +23,8 @@
     <![endif]-->
 
     <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
+      <script src="/bower_components/es5-shim/es5-shim.js"></script>
+      <script src="/bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
     <!-- Add your site or application content here -->
@@ -35,7 +35,7 @@
             <a class="btn btn-link visible-xs">
               <i class="icon-reorder"></i>
             </a>
-            <a ng-href="#" class="nav-brand">I Wish...</a>
+            <a ng-href="/" class="nav-brand">I Wish...</a>
             <a class="btn btn-link visible-xs">
               <i class="icon-comment-alt"></i>
             </a>
@@ -43,7 +43,7 @@
           <section class="w-f">
             <div class="lt nav-user hidden-xs pos-rlt">
               <div class="nav-avatar pos-rlt">
-                <a ng-if='account.isAuthenticated' href="#" class="thumb-sm avatar animated rollIn">
+                <a ng-if='account.isAuthenticated' href="/" class="thumb-sm avatar animated rollIn">
                   <img ng-src="{{ account.image }}" alt="FACE" />
                 </a>
               </div>
@@ -51,7 +51,7 @@
             <nav class="nav-primary hidden-xs">
               <ul class="nav">
                 <li ng-repeat='pane in panes' ng-class='{active:pane.selected}'>
-                  <a href="#" ng-click="select(pane)" ng-href="#{{ pane.href }}">
+                  <a href="/" ng-click="select(pane)" ng-href="{{ pane.href }}">
                     <i class='{{ pane.icon }}'></i>
                     {{ pane.text }}
                   </a>
@@ -60,7 +60,7 @@
             </nav>
           </section>
           <footer class='footer bg-gradient hidden-xs'>
-            <a href="#" ng-click='logout()' class="btn btn-sm btn-link m-r-n-xs pull-right" title="logout">
+            <a href="" ng-click='logout()' class="btn btn-sm btn-link m-r-n-xs pull-right" title="logout">
               <i class="icon-off"></i>
             </a>
             <a href="" ng-click='navVert = !navVert' class="btn btn-sm btn-link m-l-n-sm">
@@ -76,7 +76,7 @@
       <div class="modal-over">
         <div class="modal-center animated flipInX">
           <div class="clear">
-            <a href="#" class="btn btn-lg btn-info" ng-click='login()'>
+            <a href="" class="btn btn-lg btn-info" ng-click='login()'>
               <i class="icon-facebook"></i>
               LOGIN
             </a>
@@ -87,29 +87,29 @@
 
     <script src="http://code.angularjs.org/1.2.0-rc.2/angular.min.js"></script>
 
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="bower_components/angular-easyfb/angular-easyfb.min.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/restangular/dist/restangular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/moment/min/moment.min.js"></script>
+    <script src="/bower_components/angular-easyfb/angular-easyfb.min.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/restangular/dist/restangular.min.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/services/account.js"></script>
-    <script src="scripts/controllers/aside.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/item.js"></script>
-    <script src="scripts/services/underscore.js"></script>
-    <script src="scripts/services/validImg.js"></script>
-    <script src="scripts/controllers/wishes.js"></script>
-    <script src="scripts/services/wish.js"></script>
-    <script src="scripts/controllers/wishDetails.js"></script>
-    <script src="scripts/controllers/account.js"></script>
-    <script src="scripts/filters/moment.js"></script>
-    <script src="scripts/controllers/myWishDetails.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controllers/main.js"></script>
+    <script src="/scripts/services/account.js"></script>
+    <script src="/scripts/controllers/aside.js"></script>
+    <script src="/scripts/controllers/login.js"></script>
+    <script src="/scripts/controllers/item.js"></script>
+    <script src="/scripts/services/underscore.js"></script>
+    <script src="/scripts/services/validImg.js"></script>
+    <script src="/scripts/controllers/wishes.js"></script>
+    <script src="/scripts/services/wish.js"></script>
+    <script src="/scripts/controllers/wishDetails.js"></script>
+    <script src="/scripts/controllers/account.js"></script>
+    <script src="/scripts/filters/moment.js"></script>
+    <script src="/scripts/controllers/myWishDetails.js"></script>
     <!-- endbuild -->
 </body>
 </html>
